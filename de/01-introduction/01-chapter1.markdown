@@ -420,7 +420,7 @@ Außerdem kannst Du mit dem Befehl `git config {key}` prüfen, welchen Wert Git 
 
 <!--If you ever need help while using Git, there are three ways to get the manual page (manpage) help for any of the Git commands:-->
 
-Falls Du jemals Hilfe bei der Nutzung von Git benötigst, gibt es drei Möglichkeiten, die entsprechende Seite aus der Dokumentation (manpage) für jeden Git Befehl anzuzeigen:
+Falls Du jemals Hilfe bei der Nutzung von Git benötigst, gibt es drei Möglichkeiten, die entsprechende Seite aus der Dokumentation (manpage) für jeden Git-Befehl anzuzeigen:
 
 	$ git help <verb>
 	$ git <verb> --help
