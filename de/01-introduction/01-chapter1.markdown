@@ -317,7 +317,7 @@ Alternativ kann man Git auch über Homebrew (`http://brew.sh/`) installieren. Ha
 
 <!--Installing Git on Windows is very easy. The msysGit project has one of the easier installation procedures. Simply download the installer exe file from the GitHub page, and run it:-->
 
-Das msysGit Projekt macht die Installation von Git unter Windows sehr einfach. Lad einfach das Installationsprogramm für Windows von der GitHub-Website herunter und führe es aus:
+Das msysGit Projekt macht die Installation von Git unter Windows sehr einfach. Lade einfach das Installationsprogramm für Windows von der GitHub-Website herunter und führe es aus:
 
 	http://msysgit.github.com/
 
