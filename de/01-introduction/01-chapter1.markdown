@@ -244,7 +244,7 @@ Um Git zu installieren, benötigst Du die folgenden Bibliotheken, die von Git ve
 
 <!--When you have all the necessary dependencies, you can go ahead and grab the latest snapshot from the Git web site:-->
 
-Nachdem Du die genannten Bibliotheken installiert hast, besorg Dir die aktuelle Version des Git-Quellcodes von der Git-Webseite:
+Nachdem Du die genannten Bibliotheken installiert hast, besorg Dir die aktuelle Version des Git-Quellcodes von der Git-Website:
 
 	http://git-scm.com/download
 
@@ -283,7 +283,7 @@ Auf einem Debian-basierten System wie Ubuntu steht Dir apt-get zur Verfügung:
 
 <!--There are two easy ways to install Git on a Mac. The easiest is to use the graphical Git installer, which you can download from the SourceForge page (see Figure 1-7):-->
 
-Auf einem Mac kann man Git auf zwei Arten installieren. Die einfachste ist, das grafische Git-Installationsprogramm zu verwenden, das man von der SourceForge-Webseite herunterladen kann (siehe Bild 1-7)
+Auf einem Mac kann man Git auf zwei Arten installieren. Die einfachste ist, das grafische Git-Installationsprogramm zu verwenden, das man von der SourceForge-Website herunterladen kann (siehe Bild 1-7)
 
 	http://sourceforge.net/projects/git-osx-installer/
 
@@ -317,7 +317,7 @@ Alternativ kann man Git auch über Homebrew (`http://brew.sh/`) installieren. Ha
 
 <!--Installing Git on Windows is very easy. The msysGit project has one of the easier installation procedures. Simply download the installer exe file from the GitHub page, and run it:-->
 
-Das msysGit Projekt macht die Installation von Git unter Windows sehr einfach. Lad einfach das Installationsprogramm für Windows von der GitHub-Webseite herunter und führe es aus:
+Das msysGit Projekt macht die Installation von Git unter Windows sehr einfach. Lad einfach das Installationsprogramm für Windows von der GitHub-Website herunter und führe es aus:
 
 	http://msysgit.github.com/
 
