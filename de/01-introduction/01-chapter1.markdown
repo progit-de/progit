@@ -283,7 +283,7 @@ Auf einem Debian-basierten System wie Ubuntu steht Dir apt-get zur Verfügung:
 
 <!--There are two easy ways to install Git on a Mac. The easiest is to use the graphical Git installer, which you can download from the SourceForge page (see Figure 1-7):-->
 
-Auf einem Mac kann man Git auf zwei Arten installieren. Die einfachste ist, das grafische Git-Installationsprogramm zu verwenden, das man von der SourceForge-Website herunterladen kann (siehe Bild 1-7)
+Auf einem Mac kann man Git auf zwei Arten installieren. Die einfachste ist, das grafische Git-Installationsprogramm zu verwenden, das man von der SourceForge-Website herunterladen kann (siehe Bild 1-7):
 
 	http://sourceforge.net/projects/git-osx-installer/
 
