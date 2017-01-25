@@ -33,7 +33,7 @@ vertaling moeten proberen te maken.
 
 Veel succes en plezier bij het vertalen...
 -->
-<!-- SHA-1 of last checked en-version: fbf24105 -->
+<!-- SHA-1 of last checked en-version: 4cefec -->
 # Git op maat maken #
 
 Tot zover heb ik de fundamentele werking van Git behandeld en hoe het te gebruiken, en ik heb een aantal tools geïntroduceerd die Git tot je beschikking stelt om je het makkelijk en efficiënt te laten gebruiken. In dit hoofdstuk zal ik wat operaties doorlopen die je kunt gebruiken om Git op een maat gemaakte manier te laten werken middels het introduceren van een aantal belangrijke configuratie-instellingen en het inhaak-systeem (hooks). Met deze tools is het makkelijk om Git precies te laten werken op de manier zoals jij, je bedrijf, of je groep het nodig hebben.
@@ -172,13 +172,13 @@ Zie de manpage van `git config` voor alle sub-instellingen die je kunt instellen
 
 ### Externe merge en diff tools ###
 
-Alhoewel Git een interne implementatie van diff heeft, deze heb je tot nu toe gebruikt, kan je in plaats daarvan een extern tool instellen. Je kunt ook een grafisch merge conflict-oplossings tool instellen, in plaats van handmatig de conflicten op te moeten lossen. Ik zal nu demonstreren hoe je het Perforce Visuele Merge Tool (P4Merge) in moet stellen, om je diff en merge oplossingen te doen, omdat het een fijn grafisch tool is en omdat het gratis is.
+Alhoewel Git een interne implementatie van diff heeft, deze heb je tot nu toe gebruikt, kan je in plaats daarvan een externe tool instellen. Je kunt ook een grafisch merge conflict-oplossings tool instellen, in plaats van handmatig de conflicten op te moeten lossen. Ik zal nu demonstreren hoe je het Perforce Visuele Merge Tool (P4Merge) in moet stellen, om je diff en merge oplossingen te doen, omdat het een fijne grafische tool is en omdat het gratis is.
 
 Als je dit wilt proberen, P4Merge werkt op alle grote platformen, dus je zou het moeten kunnen doen. Ik zal in de voorbeelden paden gebruiken die op Mac en Linux systemen werken; voor Windows moet je `/usr/local/bin` veranderen in een pad naar een uitvoerbaar bestand op jouw machine.
 
 Je kunt P4Merge hier downloaden:
 
-	http://www.perforce.com/perforce/downloads/component.html
+	http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools
 
 Om te beginnen ga je externe wrapper scripts instellen om de commando's uit te voeren. Ik zal het Mac pad gebruiken voor de applicatie; in andere systemen zal het moeten wijzen naar de plaats waar de `p4merge` binary geïnstalleerd is. Maak merge wrapper script, genaamd `extMerge`, die jouw applicatie met alle meegegeven argumenten aanroept:
 
@@ -228,15 +228,15 @@ in plaats van de uitvoer van diff op de commando regel, wordt een instantie van 
 Insert 18333fig0701.png
 Figuur 7-1. P4Merge.
 
-Als je twee branches probeert te mergen en je krijgt vervolgens merge conflicten, kan je het `git mergetool` commando uitvoeren. P4Merge wordt dan opgestart om je het conflict op te laten lossen met behulp van dat GUI tool.
+Als je twee branches probeert te mergen en je krijgt vervolgens merge conflicten, kan je het `git mergetool` commando uitvoeren. P4Merge wordt dan opgestart om je het conflict op te laten lossen met behulp van de GUI tool.
 
-Het aardige van deze wrapper opstelling is dat je de diff en merge tools eenvoudig aan kunt passen. Bijvoorbeeld, om je `extDiff` en `extMerge` tools in te stellen zodat ze bijvoorbeeld het KDiff3 tool uitvoeren, is het enige dat je moet doen het `extMerge` bestand aanpassen:
+Het aardige van deze wrapper opstelling is dat je de diff en merge tools eenvoudig aan kunt passen. Bijvoorbeeld, om je `extDiff` en `extMerge` tools in te stellen zodat ze bijvoorbeeld de KDiff3 tool uitvoeren, is het enige dat je moet doen het `extMerge` bestand aanpassen:
 
 	$ cat /usr/local/bin/extMerge
 	#!/bin/sh
 	/Applications/kdiff3.app/Contents/MacOS/kdiff3 $*
 
-Nu zal Git het KDiff3 tool gebruiken voor het tonen van diff en het oplossen van merge conflicten.
+Nu zal Git de KDiff3 tool gebruiken voor het tonen van diff en het oplossen van merge conflicten.
 
 Git is 'af fabriek' al ingesteld om een aantal andere mergeconflict-oplossings tools te gebruiken zonder dat je de cmd configuratie op hoeft te zetten. Je kunt je merge tool op kdiff3 instellen, opendiff, tkdiff, meld, xxdiff, emerge, vimdiff of gvimdiff. Als je niet geïnteresseerd bent in het gebruik van KDiff3 als diff, maar het liever alleen wilt gebruiken voor merge conflict oplossing, en het kdiff3 commando zit in je pad, dan kun je dit uitvoeren
 
@@ -548,7 +548,7 @@ Bijvoorbeeld, stel dat je wat testbestanden in een `test/` subdirectory hebt, en
 
 	test/ export-ignore
 
-Als je nu git archive uitvoert om een tarball van je project te maken, zal die map niet meegenomen worden in het archief.
+Als je nu `git archive` uitvoert om een tarball van je project te maken, zal die map niet meegenomen worden in het archief.
 
 #### export-subst ####
 
@@ -650,14 +650,12 @@ Al het werk aan de server kant zal in het update bestand in je hooks directory g
 
 	#!/usr/bin/env ruby
 
-	$refname = ARGV[0]
-	$oldrev  = ARGV[1]
-	$newrev  = ARGV[2]
-	$user    = ENV['USER']
+	refname = ARGV[0]
+	oldrev  = ARGV[1]
+	newrev  = ARGV[2]
+	user    = ENV['USER']
 
-	puts "Enforcing Policies... \n(#{$refname}) (#{$oldrev[0,6]}) (#{$newrev[0,6]})"
-
-Ja, ik gebruik globale variabelen. Schiet me niet af – het is makkelijker om het op deze manier te laten zien.
+	puts "Enforcing Policies... \n(#{refname}) (#{oldrev[0,6]}) (#{newrev[0,6]})"
 
 #### Een specifiek commit-bericht formaat afdwingen ####
 

@@ -43,7 +43,8 @@ Ou bien cela :
 	$ git clone file:///opt/git/projet.git
 
 Git opère légèrement différemment si vous spécifiez explicitement le protocole `file://` au début de l'URL.
-Si vous spécifiez simplement le chemin, Git tente d'utiliser des liens durs ou une copie des fichiers nécessaires.
+Si vous spécifiez simplement le chemin et si la destination se trouve sur le même système de fichiers, Git tente d'utiliser des liens physiques pour le fichiers communs.
+Si la destination se trouve sur un autre système de fichiers, Git fait une copie des fichiers nécessaires.
 Si vous spécifiez le protocole `file://`, Git lance un processus d'accès au travers du réseau, ce qui est généralement moins efficace.
 La raison d'utiliser spécifiquement le préfixe `file://` est la volonté d'obtenir une copie propre du dépôt, sans aucune référence ou aucun objet supplémentaire qui pourraient résulter d'un import depuis un autre système de gestion de version ou d'une action similaire (voir chapitre 9 pour les tâches de maintenance).
 Nous utiliserons les chemins normaux par la suite car c'est la méthode la plus efficace.
@@ -982,7 +983,7 @@ Nous allons détailler comment faire.
 ### Création d'un compte utilisateur ###
 
 La première chose à faire, c'est de créer un compte utilisateur gratuit.
-Visitez la page « Plans & Pricing » (plans et prix) à `http://github.com/plans` et cliquez sur le bouton « Create a free account » (créer un compte gratuit) de la zone  « Free for open source » (gratuit pour l'open source) (voir figure 4-2) qui vous amène à la page d'enregistrement.
+Visitez la page « Plans and pricing » (plans et prix) à `https://github.com/pricing` et cliquez sur le bouton « Create a free account » (créer un compte gratuit) de la zone  « Free for open source » (gratuit pour l'open source) (voir figure 4-2) qui vous amène à la page d'enregistrement.
 
 Insert 18333fig0402.png
 Figure 4-2. La page des différents plans de GitHub.

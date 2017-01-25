@@ -118,7 +118,7 @@ Git サーバーを立ち上げるには、既存のリポジトリをエクス�
     Cloning into bare repository 'my_project.git'...
     done.
 
-このコマンドを実行したときの出力はちょっとわかりにくいかもしれません。`clone` は基本的に `git init` をしてから `git fetch` をするのと同じことなので、`git init` の部分の出力も見ることになります。そのメッセージは「空のディレクトリを作成しました」というものです。実際にどんなオブジェクトの転送が行われたのかは何も表示されませんが、きちんと転送は行われています。これで、`my_project.git` ディレクトリに Git リポジトリのデータができあがりました。
+そうすると、Git ディレクトリのデータを `my_project.git` ディレクトリにコピーできます。
 
 これは、おおざっぱに言うと次の操作と同じようなことです。
 
@@ -393,7 +393,7 @@ Gitosis は鍵の管理も行うので、まず現在の鍵ファイルを削除
 
 	git:x:1000:1000::/home/git:/bin/sh
 
-いよいよ Gitosis の初期設定です。自分の秘密鍵を使って `gitosis-init` コマンドを実行します。サーバー上に自分の公開鍵をおいていない場合は、まず公開鍵をコピーしましょう。
+いよいよ Gitosis の初期設定です。自分の公開鍵を使って `gitosis-init` コマンドを実行します。サーバー上に自分の公開鍵をおいていない場合は、まず公開鍵をコピーしましょう。
 
 	$ sudo -H -u git gitosis-init < /tmp/id_dsa.pub
 	Initialized empty Git repository in /opt/git/gitosis-admin.git/
@@ -741,7 +741,7 @@ GitHub は営利企業なので、非公開のリポジトリについては料�
 
 ### ユーザーアカウントの作成 ###
 
-まずはフリー版のユーザーアカウントを作成しましょう。Pricing and Signup のページ `http://github.com/plans` で、フリーアカウントの "Sign Up" ボタンを押すと (図 4-2 を参照ください)、新規登録ページに移動します。
+まずはフリー版のユーザーアカウントを作成しましょう。Plans and pricing のページ `https://github.com/pricing` で、フリーアカウントの "Sign Up" ボタンを押すと (図 4-2 を参照ください)、新規登録ページに移動します。
 
 Insert 18333fig0402.png
 図 4-2. GitHub のプラン説明ページ

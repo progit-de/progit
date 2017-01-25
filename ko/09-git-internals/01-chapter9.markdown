@@ -432,7 +432,7 @@ Linux Kernel 저장소에도 커밋이 아닌 다른 개체를 가리키는 태�
 
 Git은 zlib으로 파일 내용을 압축하기 때문에 저장 공간이 많이 필요하지 않다. 그래서 이 데이터베이스에 저장된 파일은 겨우 925바이트밖에 되지 않는다. 크기가 큰 파일을 추가해서 이 기능의 효과를 좀 더 살펴보자. 앞 장에서 사용했던 Grit 라이브러리에 들어 있는 repo.rb 파일을 추가한다. 이 파일의 크기는 약 12K이다.
 
-	$ curl https://raw.github.com/mojombo/grit/master/lib/grit/repo.rb > repo.rb
+	$ curl -L https://raw.github.com/mojombo/grit/master/lib/grit/repo.rb > repo.rb
 	$ git add repo.rb
 	$ git commit -m 'added repo.rb'
 	[master 484a592] added repo.rb
@@ -453,7 +453,7 @@ Git은 zlib으로 파일 내용을 압축하기 때문에 저장 공간이 많�
 	$ du -b .git/objects/9b/c1dc421dcd51b4ac296e3e5b6e2a99cf44391e
 	4102	.git/objects/9b/c1dc421dcd51b4ac296e3e5b6e2a99cf44391e
 
-피일을 수정하면 어떻게 되는지 살펴보자:
+파일을 수정하면 어떻게 되는지 살펴보자:
 
 	$ echo '# testing' >> repo.rb
 	$ git commit -am 'modified repo a bit'

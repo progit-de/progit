@@ -17,7 +17,7 @@ Insert 18333fig0501.png
 
 如果两个开发者从中心仓库克隆代码下来，同时作了一些修订，那么只有第一个开发者可以顺利地把数据推送到共享服务器。第二个开发者在提交他的修订之前，必须先下载合并服务器上的数据，解决冲突之后才能推送数据到共享服务器上。在 Git 中这么用也决无问题，这就好比是在用 Subversion（或其他 CVCS）一样，可以很好地工作。
 
-如果你的团队不是很大，或者大家都已经习惯了使用集中式工作流程，完全可以采用这种简单的模式。只需要配置好一台中心服务器，并给每个人推送数据的权限，就可以开展工作了。但如果提交代码时有冲突， Git 根本就不会让用户覆盖他人代码，它直接驳回第二个人的提交操作。这就等于告诉提交者，你所作的修订无法通过快近（fast-forward）来合并，你必须先拉取最新数据下来，手工解决冲突合并后，才能继续推送新的提交。
+如果你的团队不是很大，或者大家都已经习惯了使用集中式工作流程，完全可以采用这种简单的模式。只需要配置好一台中心服务器，并给每个人推送数据的权限，就可以开展工作了。但如果提交代码时有冲突， Git 根本就不会让用户覆盖他人代码，它直接驳回第二个人的提交操作。这就等于告诉提交者，你所作的修订无法通过快进（fast-forward）来合并，你必须先拉取最新数据下来，手工解决冲突合并后，才能继续推送新的提交。
 绝大多数人都熟悉和了解这种模式的工作方式，所以使用也非常广泛。
 
 ### 集成管理员工作流 ###
@@ -539,9 +539,9 @@ Insert 18333fig0518.png
 	sending 2 messages
 	100% (2/2) done
 
-At this point, you should be able to go to your Drafts folder, change the To field to the mailing list you’re sending the patch to, possibly CC the maintainer or person responsible for that section, and send it off.
+然后，你应该去你到草稿箱去更改你要发送的补丁的收件人信息，以及需要抄送的人，然后发送它。
 
-You can also send the patches through an SMTP server. As before, you can set each value separately with a series of `git config` commands, or you can add them manually in the sendemail section in your `~/.gitconfig` file:
+您也可以通过SMTP服务器发送补丁。和上面一样，你可以通过`git config`命令单独设置每个参数，也可以在你的`~/.gitconfig`文件中的sendemail节点手动添加它们。
 
 	[sendemail]
 	  smtpencryption = tls
@@ -549,7 +549,7 @@ You can also send the patches through an SMTP server. As before, you can set eac
 	  smtpuser = user@gmail.com
 	  smtpserverport = 587
 
-After this is done, you can use `git send-email` to send your patches:
+配置完成后，您可以使用`git send-email`来发送你的补丁：
 
 	$ git send-email *.patch
 	0001-added-limit-to-log-function.patch
@@ -837,7 +837,7 @@ Insert 18333fig0527.png
 	user: "Scott Chacon <schacon@gmail.com>"
 	1024-bit DSA key, ID F721C45A, created 2009-02-09
 
-完成签名之后，如何分发PGP公钥（public key）是个问题。（译者注：分发公钥是为了验证标签）。还好，Git的设计者想到了解决办法：可以把key（既公钥）作为blob变量写入Git库，然后把它的内容直接写在标签里。`gpg --list-keys`命令可以显示出你所拥有的key：
+完成签名之后，如何分发PGP公钥（public key）是个问题。（译者注：分发公钥是为了验证标签）。还好，Git的设计者想到了解决办法：可以把key（即公钥）作为blob变量写入Git库，然后把它的内容直接写在标签里。`gpg --list-keys`命令可以显示出你所拥有的key：
 
 	$ gpg --list-keys
 	/Users/schacon/.gnupg/pubring.gpg

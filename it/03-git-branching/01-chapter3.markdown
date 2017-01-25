@@ -71,7 +71,7 @@ Questo è interessante, perché ora il tuo ramo testing è stato spostato in ava
 
 La Figura 3-8 mostra il risultato.
 
-insert 18333fig0308.png 
+Insert 18333fig0308.png 
 Figura 3-8. HEAD si è spostato ad un altro ramo con un checkout.
 
 Questo comando ha fatto due cose. Ha spostato il puntatore HEAD indietro per puntare al ramo master e ha riportato i file nella tua directory di lavoro allo stato in cui si trovavano in quel momento. Questo significa anche che i cambiamenti che farai da questo punto in poi saranno separati da una versione più vecchia del progetto. Essenzialmente riavvolge temporaneamente il lavoro che hai fatto nel tuo ramo testing così puoi muoverti in una direzione differente.
@@ -268,7 +268,7 @@ Se vuoi usare uno strumento grafico per risolvere i problemi, puoi lanciare `git
 	  {remote}: modified
 	Hit return to start merge resolution tool (opendiff):
 
-Se vuoi usare uno strumento di fusione differente dal predefinito (Git usa `opendiff` in questo caso perché ho lanciato il comando su un Mac), puoi vedere tutti gli strumenti supportati all'inizio dopo “merge tool candidates”. Scrivi il nome dello strumento che vorresti usare. Nel Capitolo 7, discuteremo su come puoi modificare i valori predefiniti del tuo ambiente.
+Se vuoi usare uno strumento di fusione differente dal predefinito (Git usa `opendiff` in questo caso perché ho lanciato il comando su un Mac), puoi vedere tutti gli strumenti supportati all'inizio dopo “... one of the following tools:” (uno dei seguenti strumenti, ndt.). Scrivi il nome dello strumento che vorresti usare. Nel Capitolo 7, discuteremo su come puoi modificare i valori predefiniti del tuo ambiente.
 
 Dopo che sei uscito dallo strumento di fusione, Git ti chiederà se la fusione è avvenuta con successo. Se gli dirai allo script che è così, parcheggerà i file in modo da segnarli come risolti per te.
 
@@ -388,7 +388,7 @@ Questo può un po' confondere, quindi vediamo un esempio. Diciamo che hai un ser
 Insert 18333fig0322.png 
 Figura 3-22. Un clone con Git fornisce un proprio ramo principale e un puntatore origin/master al ramo principale di origine.
 
-Se fai del lavoro sul tuo ramo principale locale, e, allo stesso temo, qualcuno ha inviato degli aggiornamenti al ramo principale di `git.ourcompany.com`, allora la tua storia si muoverà in avanti in modo differente. Inoltre, mentre non hai contatti con il tuo server di partenza, il tuo puntatore `origin/master` non si sposterà (vedi Figura 3-23).
+Se fai del lavoro sul tuo ramo principale locale, e, allo stesso tempo, qualcuno ha inviato degli aggiornamenti al ramo principale di `git.ourcompany.com`, allora la tua storia si muoverà in avanti in modo differente. Inoltre, mentre non hai contatti con il tuo server di partenza, il tuo puntatore `origin/master` non si sposterà (vedi Figura 3-23).
 
 Insert 18333fig0323.png 
 Figura 3-23. Lavorando in locale ed avendo qualcuno che ha inviato al server remoto qualcosa rende l'avanzamento delle storie differente.

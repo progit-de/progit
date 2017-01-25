@@ -47,7 +47,7 @@ Pamiętaj, że każdy plik w twoim katalogu roboczym może być w jednym z dwóc
 Kiedy zmieniasz pliki, Git rozpoznaje je jako zmodyfikowane, ponieważ różnią się od ostatniej zatwierdzonej zmiany. Zmodyfikowane pliki umieszczasz w poczekalni, a następnie zatwierdzasz oczekujące tam zmiany i tak powtarza się cały cykl. Przedstawia go Diagram 2-1.
 
 Insert 18333fig0201.png 
-Figure 2-1. Cykl życia stanu twoich plików.
+Rysunek 2-1. Cykl życia stanu twoich plików.
 
 ### Sprawdzanie stanu twoich plików ###
 
@@ -55,7 +55,7 @@ Podstawowe narzędzie używane do sprawdzenia stanu plików to polecenie `git st
 
 	$ git status
 	# On branch master
-	nothing to commit (working directory clean)
+	nothing to commit, working directory clean
 
 Oznacza to, że posiadasz czysty katalog roboczy — innymi słowy nie zawiera on śledzonych i zmodyfikowanych plików. Git nie widzi także żadnych plików nieśledzonych, w przeciwnym wypadku wyświetliłby ich listę. W końcu polecenie pokazuje również gałąź, na której aktualnie pracujesz. Póki co, jest to zawsze master, wartość domyślna; nie martw się tym jednak teraz. Następny rozdział w szczegółach omawia gałęzie oraz odniesienia.
 

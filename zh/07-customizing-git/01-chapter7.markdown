@@ -19,7 +19,7 @@
 
 ### 客户端基本配置 ###
 
-Git 能够识别的配置项被分为了两大类：客户端和服务器端，其中大部分基于你个人工作偏好，属于客户端配置。尽管有数不尽的选项，但我只阐述 其中经常使用或者会对你的工作流产生巨大影响的选项，如果你想观察你当前的 Git 能识别的选项列表，请运行 
+Git 能够识别的配置项被分为了两大类：客户端和服务器端，其中大部分基于你个人工作偏好，属于客户端配置。尽管有数不尽的选项，但我只阐述 其中经常使用或者会对你的工作流产生巨大影响的选项，如果你想观察你当前的 Git 能识别的选项列表，请运行
 
 	$ git config --help
 
@@ -128,7 +128,7 @@ Git会按照你需要自动为大部分的输出加上颜色，你能明确地�
 
 除此之外，以上每个选项都有子选项，可以被用来覆盖其父设置，以达到为输出的各个部分着色的目的。例如，让diff输出的改变信息以粗体、蓝色前景和黑色背景的形式显示：
 
-	$ git config --global color.diff.meta “blue black bold”
+	$ git config --global color.diff.meta "blue black bold"
 
 你能设置的颜色值如：normal、black、red、green、yellow、blue、magenta、cyan、white，正如以上例子设置的粗体属性，想要设置字体属性的话，可以选择如：bold、dim、ul、blink、reverse。
 
@@ -142,7 +142,7 @@ P4Merge可以在所有主流平台上运行，现在开始大胆尝试吧。对�
 
 下载P4Merge：
 
-	http://www.perforce.com/perforce/downloads/component.html
+	http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools
 
 首先把你要运行的命令放入外部包装脚本中，我会使用Mac系统上的路径来指定该脚本的位置，在其他系统上，它应该被放置在二进制文件`p4merge`所在的目录中。创建一个merge包装脚本，名字叫作`extMerge`，让它带参数调用`p4merge`二进制文件：
 
@@ -214,7 +214,7 @@ Git预先设置了许多其他的合并和解决冲突的工具，而你不必�
 
 #### core.autocrlf ####
 
-假如你正在Windows上写程序，又或者你正在和其他人合作，他们在Windows上编程，而你却在其他系统上，在这些情况下，你可能会遇到行尾结束符问题。这是因为Windows使用回车和换行两个字符来结束一行，而Mac和Linux只使用换行一个字符。虽然这是小问题，但它会极大地扰乱跨平台协作。 
+假如你正在Windows上写程序，又或者你正在和其他人合作，他们在Windows上编程，而你却在其他系统上，在这些情况下，你可能会遇到行尾结束符问题。这是因为Windows使用回车和换行两个字符来结束一行，而Mac和Linux只使用换行一个字符。虽然这是小问题，但它会极大地扰乱跨平台协作。
 
 Git可以在你提交时自动地把行结束符CRLF转换成LF，而在签出代码时把LF转换成CRLF。用`core.autocrlf`来打开此项功能，如果是在Windows系统上，把它设置成`true`，这样当签出代码时，LF会被转换成CRLF：
 
@@ -251,7 +251,7 @@ Git预先设置了一些选项来探测和修正空白问题，其4种主要选�
 
 	$ git apply --whitespace=fix <patch>
 
-这些选项也能运用于衍合。如果提交了有空白问题的文件但还没推送到上流，你可以运行带有`--whitespace=fix`选项的`rebase`来让Git在重写补丁时自动修正它们。
+这些选项也能运用于衍合。如果提交了有空白问题的文件但还没推送到上游，你可以运行带有`--whitespace=fix`选项的`rebase`来让Git在重写补丁时自动修正它们。
 
 ### 服务器端配置 ###
 
@@ -301,19 +301,19 @@ Git默认情况下不会在推送期间检查所有对象的一致性。虽然�
 
 	*.pbxproj -crlf -diff
 
-现在，Git 会尝试转换和修正CRLF（回车换行）问题，也不会当你在项目中运行git show或git diff时，比较不同的内容。在Git 1.6及之后的版本中，可以用一个宏代替`-crlf -diff`：
+现在，Git 会尝试转换和修正CRLF（回车换行）问题，也不会当你在项目中运行`git show`或`git diff`时，比较不同的内容。在Git 1.6及之后的版本中，可以用一个宏代替`-crlf -diff`：
 
 	*.pbxproj binary
 
 #### 比较二进制文件 ####
 
-在 Git 中，你能利用 Git 属性来有效地比较二进制文件。可以设置 Git 把二进制数据转换成文本格式，用通常的diff来比较。
+你可以使用 Git 属性来有效地比较两个二进制文件（binary files，译注：指非文本文件）。那么第一步要做的是，告诉 Git 怎么把你的二进制文件转化为纯文本格式，从而让普通的 diff 命令可以进行文本对比。但是，我们怎么把*二进制文件*转化为文本呢？最好的解决方法是找到一个转换工具帮助我们进行转化。但是，大部分的二进制文件不能表示为可读的文本，例如语音文件就很难转化为文本文件。如果你遇到这些情况，比较简单的解决方法是从这些二进制文件中获取元数据。虽然这些元数据并不能完全描述一个二进制文件，但大多数情况下，都是能够概括文件情况的。
 
-We'll make use of the both described approaches to get usable diffs for some widely used binary formats.
+下面，我们将会展示，如何使用转化工具进行二进制文件的比较。
 
-Side note: There are different kinds of binary formats with a text content, which are hard to find usable converter for. In such a case you could try to extract a text from your file with the `strings` program. Some of these files may use an UTF-16 encoding or other "codepages" and `strings` won’t find anything useful in there. Your mileage may vary. However, `strings` is available on most Mac and Linux systems, so it may be a good first try to do this with many binary formats.
+边注：有一些二进制文件虽然包含文字，但是却难以转换。（译注：例如 Word 文档。）在这些情况，你可以尝试使用 `strings` 工具来获取其中的文字。但如果当这些文档包含 UTF-16 编码，或者其他代码页（codepages），`strings` 也可能无补于事。`strings` 在大部分的 Mac 和 Linux 下都有安装。当遇到有二进制文件需要转换的时候，你可以试试这个工具。
 
-##### MS Word files #####
+##### Word文档 #####
 
 这个特性很酷，而且鲜为人知，因此我会结合实例来讲解。首先，要解决的是最令人头疼的问题：对Word文档进行版本控制。很多人对Word文档又恨又爱，如果想对其进行版本控制，你可以把文件加入到 Git 库中，每次修改后提交即可。但这样做没有一点实际意义，因为运行`git diff`命令后，你只能得到如下的结果：
 
@@ -330,7 +330,7 @@ Side note: There are different kinds of binary formats with a text content, whic
 
 	$ git config diff.word.textconv catdoc
 
-This command adds a section to your `.git/config` that looks like this:
+这个命令会在你的 `.git/config` 文件中增加一节：
 
 	[diff "word"]
 		textconv = catdoc
@@ -351,23 +351,23 @@ This command adds a section to your `.git/config` that looks like this:
 	-system for non-linear development.
 	+system for non-linear development (See Chapter 3).
 
-Git 成功且简洁地显示出我增加的文本"Let’s see if this works"。虽然有些瑕疵，在末尾显示了一些随机的内容，但确实可以比较了。如果你能找到或自己写个Word到纯文本的转换器的话，效果可能会更好。 `strings`可以在大部分Mac和Linux系统上运行，所以它是处理二进制格式的第一选择。
+Git 成功且简洁地显示出我增加的文本"(See Chapter 3)"。工作的很完美！
 
-##### OpenDocument Text files #####
+##### OpenDocument文本文档 #####
 
-The same approach that we used for MS Word files (`*.doc`) can be used for OpenDocument Text files (`*.odt`) created by OpenOffice.org.
+我们用于处理Word文档（`*.doc`）的方法同样适用于处理OpenOffice.org创建的OpenDocument文本文档（`*.odt`）。
 
-Add the following line to your `.gitattributes` file:
+把下面这行添加到`.gitattributes`文件：
 
 	*.odt diff=odt
 
-Now set up the `odt` diff filter in `.git/config`:
+然后在`.git/config` 文件中设置`odt`过滤器：
 
 	[diff "odt"]
 		binary = true
 		textconv = /usr/local/bin/odt-to-txt
 
-OpenDocument files are actually zip’ped directories containing multiple files (the content in an XML format, stylesheets, images, etc.). We’ll need to write a script to extract the content and return it as plain text. Create a file `/usr/local/bin/odt-to-txt` (you are free to put it into a different directory) with the following content:
+OpenDocument文档实际上是多个文件（包括一个XML文件和表格、图片等文件）的压缩包。我们需要写一个脚本来提取其中纯文本格式的内容。创建一个文件`/usr/local/bin/odt-to-txt`（你也可以放到其他目录下），写入下面内容：
 
 	#! /usr/bin/env perl
 	# Simplistic OpenDocument Text (.odt) to plain text converter.
@@ -397,13 +397,13 @@ OpenDocument files are actually zip’ped directories containing multiple files 
 	s/\A\n+//;                         # remove leading blank lines
 	print "\n", $_, "\n\n";
 
-And make it executable
+然后把它设为可执行文件
 
 	chmod +x /usr/local/bin/odt-to-txt
 
-Now `git diff` will be able to tell you what changed in `.odt` files.
+现在`git diff`命令就可以显示`.odt`文件的变更了。
 
-##### Image files #####
+##### 图像文件 #####
 
 你还能用这个方法比较图像文件。当比较时，对JPEG文件运用一个过滤器，它能提炼出EXIF信息 — 大部分图像格式使用的元数据。如果你下载并安装了`exiftool`程序，可以用它参照元数据把图像转换成文本。比较的不同结果将会用文本向你展示：
 
@@ -454,10 +454,10 @@ Now `git diff` will be able to tell you what changed in `.odt` files.
 因此，你能写自己的过滤器，在提交文件到暂存区或签出文件时替换关键字。有2种过滤器，"clean"和"smudge"。在 `.gitattributes`文件中，你能对特定的路径设置一个过滤器，然后设置处理文件的脚本，这些脚本会在文件签出前（"smudge"，见图 7-2）和提交到暂存区前（"clean"，见图7-3）被调用。这些过滤器能够做各种有趣的事。
 
 Insert 18333fig0702.png
-图7-2. 签出时，“smudge”过滤器被触发。
+图7-2. 签出时，"smudge"过滤器被触发。
 
 Insert 18333fig0703.png
-图7-3. 提交到暂存区时，“clean”过滤器被触发。
+图7-3. 提交到暂存区时，"clean"过滤器被触发。
 
 这里举一个简单的例子：在暂存前，用`indent`（缩进）程序过滤所有C源代码。在`.gitattributes`文件中设置"indent"过滤器过滤`*.c`文件：
 
@@ -510,7 +510,7 @@ Git属性在导出项目归档时也能发挥作用。
 
 	test/ export-ignore
 
-现在，当运行git archive来创建项目的压缩包时，那个目录不会在归档中出现。
+现在，当运行 `git archive` 来创建项目的压缩包时，那个目录不会在归档中出现。
 
 #### export-subst ####
 
@@ -612,14 +612,12 @@ update 脚本和 `pre-receive` 脚本十分类似。不同之处在于它会为�
 
 	#!/usr/bin/env ruby
 
-	$refname = ARGV[0]
-	$oldrev  = ARGV[1]
-	$newrev  = ARGV[2]
-	$user    = ENV['USER']
+	refname = ARGV[0]
+	oldrev  = ARGV[1]
+	newrev  = ARGV[2]
+	user    = ENV['USER']
 
-	puts "Enforcing Policies... \n(#{$refname}) (#{$oldrev[0,6]}) (#{$newrev[0,6]})"
-
-没错，我在用全局变量。别鄙视我——这样比较利于演示过程。
+	puts "Enforcing Policies... \n(#{refname}) (#{oldrev[0,6]}) (#{newrev[0,6]})"
 
 #### 指定特殊的提交信息格式 ####
 
@@ -736,7 +734,7 @@ update 脚本和 `pre-receive` 脚本十分类似。不同之处在于它会为�
 	      access[$user].each do |access_path|
 	        if !access_path || # 用户拥有完全访问权限
 	          (path.index(access_path) == 0) # 或者对此位置有访问权限
-	          has_file_access = true 
+	          has_file_access = true
 	        end
 	      end
 	      if !has_file_access
@@ -821,7 +819,7 @@ update 脚本和 `pre-receive` 脚本十分类似。不同之处在于它会为�
 
 ### 客户端挂钩 ###
 
-这种手段的缺点在于用户推送内容遭到拒绝后几乎无法避免的抱怨。辛辛苦苦写成的代码在最后时刻惨遭拒绝是十分悲剧切具迷惑性的；更可怜的是他们不得不修改提交历史来解决问题，这怎么也算不上王道。
+这种手段的缺点在于用户推送内容遭到拒绝后几乎无法避免的抱怨。辛辛苦苦写成的代码在最后时刻惨遭拒绝是十分悲剧且具有迷惑性的；更可怜的是他们不得不修改提交历史来解决问题，这怎么也算不上王道。
 
 逃离这种两难境地的法宝是给用户一些客户端的挂钩，在他们作出可能悲剧的事情的时候给以警告。然后呢，用户们就能在提交--问题变得更难修正之前解除隐患。由于挂钩本身不跟随克隆的项目副本分发，所以必须通过其他途径把这些挂钩分发到用户的 .git/hooks 目录并设为可执行文件。虽然可以在相同或单独的项目内 容里加入并分发它们，全自动的解决方案是不存在的。
 
@@ -924,7 +922,7 @@ update 脚本和 `pre-receive` 脚本十分类似。不同之处在于它会为�
 	  end
 	end
 
-这个脚本利用了一个第六章“修订版本选择”一节中不曾提到的语法。通过这一句可以获得一个所有已经完成推送的提交的列表：
+这个脚本利用了一个第六章"修订版本选择"一节中不曾提到的语法。通过这一句可以获得一个所有已经完成推送的提交的列表：
 
 	git rev-list ^#{sha}^@ refs/remotes/#{remote_ref}
 

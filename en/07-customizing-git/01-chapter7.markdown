@@ -4,7 +4,7 @@ So far, I’ve covered the basics of how Git works and how to use it, and I’ve
 
 ## Git Configuration ##
 
-As you briefly saw in the Chapter 1, you can specify Git configuration settings with the `git config` command. One of the first things you did was set up your name and e-mail address:
+As you briefly saw in Chapter 1, you can specify Git configuration settings with the `git config` command. One of the first things you did was set up your name and e-mail address:
 
 	$ git config --global user.name "John Doe"
 	$ git config --global user.email johndoe@example.com
@@ -130,7 +130,7 @@ In addition, each of these has subsettings you can use to set specific colors fo
 
 	$ git config --global color.diff.meta "blue black bold"
 
-You can set the color to any of the following values: normal, black, red, green, yellow, blue, magenta, cyan, or white. If you want an attribute like bold in the previous example, you can choose from bold, dim, ul, blink, and reverse.
+You can set the color to any of the following values: `normal`, `black`, `red`, `green`, `yellow`, `blue`, `magenta`, `cyan`, or `white`, or, if your terminal supports more than 16 colors, an arbitrary numeric color value (between 0 and 255 on a 256-color terminal). If you want an attribute like bold in the previous example, you can choose from `bold`, `dim`, `ul`, `blink`, and `reverse`.
 
 See the `git config` manpage for all the subsettings you can configure, if you want to do that.
 
@@ -142,7 +142,7 @@ If you want to try this out, P4Merge works on all major platforms, so you should
 
 You can download P4Merge here:
 
-	http://www.perforce.com/perforce/downloads/component.html
+	http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools
 
 To begin, you’ll set up external wrapper scripts to run your commands. I’ll use the Mac path for the executable; in other systems, it will be where your `p4merge` binary is installed. Set up a merge wrapper script named `extMerge` that calls your binary with all the arguments provided:
 
@@ -511,7 +511,7 @@ For example, say you have some test files in a `test/` subdirectory, and it does
 
 	test/ export-ignore
 
-Now, when you run git archive to create a tarball of your project, that directory won’t be included in the archive.
+Now, when you run `git archive` to create a tarball of your project, that directory won’t be included in the archive.
 
 #### export-subst ####
 
@@ -534,6 +534,10 @@ You can also use Git attributes to tell Git to use different merge strategies fo
 This is helpful if a branch in your project has diverged or is specialized, but you want to be able to merge changes back in from it, and you want to ignore certain files. Say you have a database settings file called database.xml that is different in two branches, and you want to merge in your other branch without messing up the database file. You can set up an attribute like this:
 
 	database.xml merge=ours
+
+And then define a dummy `ours` merge strategy with:
+
+    git config --global merge.ours.driver true
 
 If you merge in the other branch, instead of having merge conflicts with the database.xml file, you see something like this:
 
@@ -613,14 +617,12 @@ All the server-side work will go into the update file in your hooks directory. T
 
 	#!/usr/bin/env ruby
 
-	$refname = ARGV[0]
-	$oldrev  = ARGV[1]
-	$newrev  = ARGV[2]
-	$user    = ENV['USER']
+	refname = ARGV[0]
+	oldrev  = ARGV[1]
+	newrev  = ARGV[2]
+	user    = ENV['USER']
 
-	puts "Enforcing Policies... \n(#{$refname}) (#{$oldrev[0,6]}) (#{$newrev[0,6]})"
-
-Yes, I’m using global variables. Don’t judge me — it’s easier to demonstrate in this manner.
+	puts "Enforcing Policies... \n(#{refname}) (#{oldrev[0,6]}) (#{newrev[0,6]})"
 
 #### Enforcing a Specific Commit-Message Format ####
 

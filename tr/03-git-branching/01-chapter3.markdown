@@ -115,7 +115,7 @@ Bu noktada, sizden kritik önemde başka sorun üzerinde çalışıp hızlıca b
 Insert 18333fig0310.png 
 Figür 3-10. Kısa ve basit bir kayıt tarihçesi.
 
-Şirketinizin kullandığı sorun izleme programındaki #53 numaralı sorun üzerinde çalışmaya karar verdiniz. Açıklığa kavuşturmak için söyleyelim: Git herhangi bir sorun izleme programına bağlı değildir; ama #53 numaralı sorun üzerinde çalışmak istediğiniz başı sonu belli bir konu olduğu için, çalışmanızı bir dal üzerinde yapacaksınız. Bir dalı yaratır yaratmaz hemen ona geçiş yapmak için `git checout` komutunu `-b` seçeneğiyle birlikte kullanabilirsiniz:
+Şirketinizin kullandığı sorun izleme programındaki #53 numaralı sorun üzerinde çalışmaya karar verdiniz. Açıklığa kavuşturmak için söyleyelim: Git herhangi bir sorun izleme programına bağlı değildir; ama #53 numaralı sorun üzerinde çalışmak istediğiniz başı sonu belli bir konu olduğu için, çalışmanızı bir dal üzerinde yapacaksınız. Bir dalı yaratır yaratmaz hemen ona geçiş yapmak için `git checkout` komutunu `-b` seçeneğiyle birlikte kullanabilirsiniz:
 
 	$ git checkout -b iss53
 	Switched to a new branch "iss53"
@@ -136,7 +136,7 @@ Web sitesi üzerinde çalışıp bazı kayıtlar yapıyorsunuz. Bunu yaptığın
 	$ git commit -a -m 'added a new footer [issue 53]'
 
 Insert 18333fig0312.png 
-Figür 3-12. Çalışamız sonucunda iss53 dalı ilerledi.
+Figür 3-12. Çalışmamız sonucunda iss53 dalı ilerledi.
 
 Şimdi, sizden web sitesindeki bir sorun için acilen bir yama hazırlamanız istensin. Git kullanıyorsanız, yamayı daha önce `iss53` dalında yaptığınız yaptığınız değişikliklerle birlikte yayına sokmanız gerekmez; yama üzerinde çalışmaya başlamadan önce söz konusu değişiklikleri geri alıp yayındaki web sitesini kaynak koduna ulaşabilmek için fazla çabalamanıza da gerek yok. Tek yapmanız gereken `master` dalına geri dönmek.
 
@@ -464,29 +464,29 @@ Uzak uçbirim dalının adından başka bir adla yerel dal oluşturmak isterseni
 
 ### Uzak Uçbirim Dallarını Silmek ###
 
-Suppose you’re done with a remote branch — say, you and your collaborators are finished with a feature and have merged it into your remote’s `master` branch (or whatever branch your stable codeline is in). You can delete a remote branch using the rather obtuse syntax `git push [remotename] :[branch]`. If you want to delete your `serverfix` branch from the server, you run the following:
+Diyelim ki uzak bir dalla yapacaklarınız bitti ve siz ile takım arkadaşlarınız bir özelliği tamamlayıp sizin uzaktaki `master` dalınıza (veya kararlı kodunuzun olduğu herhangi bir dalda) birleştirdi. Bir uzak dalı `git push [uzakadı] :[dal]` sabit sözdizimini kullanarak silebilirsiniz. Eğer sunucudan `serverfix` dalını silmek isterseniz, şu komutu çalıştırın:
 
 	$ git push origin :serverfix
 	To git@github.com:schacon/simplegit.git
 	 - [deleted]         serverfix
 
-Boom. No more branch on your server. You may want to dog-ear this page, because you’ll need that command, and you’ll likely forget the syntax. A way to remember this command is by recalling the `git push [remotename] [localbranch]:[remotebranch]` syntax that we went over a bit earlier. If you leave off the `[localbranch]` portion, then you’re basically saying, “Take nothing on my side and make it be `[remotebranch]`.”
+İşte bu! Artık sunucunuzda bu dal olmayacak. Bu sayfayı dikkatlice anlamak isteyebilirsiniz, çünkü muhtemelen bu komuta ihtiyacınız olacak ancak sözdizimini unutacaksınız. Bu komutu hatırlamanın bir yolu daha önceden biraz bahsedilen `git push [uzakadı] [yereldal]:[uzakdal]` sözdizimini hatırlamaktır. Eğer `[yereldal]` kısmını yazmazsanız, aslında dediğiniz şey “Benim tarafımdan bir şey alma ancak `[uzakdal]`dan al.”
 
-## Rebasing ## Zemin, Kök, Temel
+## Rebasing (Tekrar Adresleme) ##
 
-In Git, there are two main ways to integrate changes from one branch into another: the `merge` and the `rebase`. In this section you’ll learn what rebasing is, how to do it, why it’s a pretty amazing tool, and in what cases you won’t want to use it.
+Git içerisinde, değişiklikleri bir daldan diğerine bütünleştirmek için iki temel yol bulunuyor: `merge` ve `rebase`. Bu bölümde sadece rebase komutunun ne olduğunu, nasıl yapılacağını, neden mükemmel bir araç olduğunu ve hangi durumlarda kullanmak istemeyeceğinizi öğreneceksiniz.
 
-### The Basic Rebase ###
+### Temel Tekrar Adresleme ###
 
-If you go back to an earlier example from the Merge section (see Figure 3-27), you can see that you diverged your work and made commits on two different branches.
+Birleştirme kısmındaki örneğe geri giderseniz (Figür 3-27'ye bakın), çalışmanızı ayırdığınızı ve iki farklı dal üzerinde gönderi yaptığınızı görebilirsiniz.
 
 Insert 18333fig0327.png 
-Figure 3-27. Your initial diverged commit history.
+Figure 3-27. İlk ayrılan gönderi geçmişi.
 
-The easiest way to integrate the branches, as we’ve already covered, is the `merge` command. It performs a three-way merge between the two latest branch snapshots (C3 and C4) and the most recent common ancestor of the two (C2), creating a new snapshot (and commit), as shown in Figure 3-28.
+Dalları bütünlemenin en kolay yolu - daha önceden anlattığımız gibi - `merge` komutudur. Bu komut, en son iki dal bellek kopyası (C3 ve C4) ve ikisinin en yakın ortak atası (C2) arasında üç yönlü bir birleştirme yapar. Bunun sonucunda yeni bir bellek kopyası (ve gönderi) oluşturur. Bkz. Figür 3-28.
 
 Insert 18333fig0328.png 
-Figure 3-28. Merging a branch to integrate the diverged work history.
+Figure 3-28. Ayrılmış çalışma geçmişini bütünleştirmek için bir dal birleştirmek.
 
 However, there is another way: you can take the patch of the change that was introduced in C3 and reapply it on top of C4. In Git, this is called _rebasing_. With the `rebase` command, you can take all the changes that were committed on one branch and replay them on another one.
 
@@ -593,6 +593,6 @@ You have to merge that work in at some point so you can keep up with the other d
 
 If you treat rebasing as a way to clean up and work with commits before you push them, and if you only rebase commits that have never been available publicly, then you’ll be fine. If you rebase commits that have already been pushed publicly, and people may have based work on those commits, then you may be in for some frustrating trouble.
 
-## Summary ##
+## Özet ##
 
-We’ve covered basic branching and merging in Git. You should feel comfortable creating and switching to new branches, switching between branches and merging local branches together.  You should also be able to share your branches by pushing them to a shared server, working with others on shared branches and rebasing your branches before they are shared.
+Git'in temel branch ve merge işlemlerinden bahsettik. Artık rahatça yeni branch oluşturabilir, branchler arasından geçiş yapabilir ve local branchler ile merge işlemi yapabilirsiniz. Aynı zamanda branchlerinizi paylaşılan bir sunucuya göndererek paylaşabilmelisiniz ya da başkalarıyla ortak branchlerde çalışabilmeli ve branchlerinizi paylaşmadan önce rebase edebilmelisiniz.

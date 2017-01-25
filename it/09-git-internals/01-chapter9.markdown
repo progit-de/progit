@@ -345,8 +345,13 @@ Ora, il tuo database Git assomiglia concettualmente alla Figura 9-4.
 Insert 18333fig0904.png 
 Figura 9-4. La directory degli oggetti Git directory con inclusi i riferimenti branch e head.
 
-Quando esegui comandi come `git branch (branchname)`, Git in realtà esegue il comando `update-ref` per
-aggiungere lo SHA-1 dell'ultima commit del branch nel quale siete, in qualsiasi nuovo riferimento vogliate creare.
+Quando esegui comandi come `git branch (branchname)`, Git in realtà esegue il comando `update-ref` per aggiungere lo SHA-1 dell'ultima commit del branch nel quale siete, in qualsiasi nuovo riferimento vogliate creare.
+
+Se Git non trova un riferimento nella directory `refs` lo cercherà nel file `.git/packed-refs`, che contiene coppie di percorsi con i relativi SHA-1. Per esempio:
+
+    52d771167707552d8e2a50f602c669e2ad135722 refs/tags/v1.0.1
+
+Questo file esiste per motivi di prestazioni, perché, per riferimenti che non cambiano spesso, è molto più efficiente avere un unico file, piuttosto che tanti piccolissimi. Puoi far comprimere a Git i riferimenti in questo file con il comando `git pack-refs`.
 
 ### Intestazione ###
 
@@ -451,7 +456,7 @@ Torniamo agli oggetti del database per il tuo repository Git di test. A questo p
 
 Git comprime il contenuto di questi file con zlib e, poiché non stai memorizzando molte cose, complessivamente tutti questi file occupano solo 925 bytes. Aggiungeremo al repository del contenuto più pesante per dimostrare un’interessante caratteristica di Git. Aggiungi il file repo.rb dalla libreria Grit che abbiamo visto prima: sono circa 12K di sorgenti:
 
-	$ curl http://github.com/mojombo/grit/raw/master/lib/grit/repo.rb > repo.rb
+	$ curl -L http://github.com/mojombo/grit/raw/master/lib/grit/repo.rb > repo.rb
 	$ git add repo.rb 
 	$ git commit -m ‘aggiunto repo.rb'
 	[master 484a592] aggiunto repo.rb

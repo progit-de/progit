@@ -887,9 +887,9 @@ Diese Regel gehört dann zum Regelsatz des `gitolite` Repository.
 
 An dieser Stelle fragst Du Dich vielleicht, wie die Zugriffsregeln eigentlich angewandt werden. Lass uns das kurz anschauen.
 
-<!--There are two levels of access control in Gitolite.  The first is at the repository level; if you have read (or write) access to *any* ref in the repository, then you have read (or write) access to the repository.  This is the only access control that Gitosis had.-->
+<!--There are two levels of access control in Gitolite.  The first is at the repository level; if you have read (or write) access to *any* ref in the repository, then you have read (or write) access to the repository.-->
 
-Es gibt zwei Ebenen für die Zugriffsberechtigung in Gitolite. Die erste befindet sich auf Repository Ebene. Wenn Du Lese- oder Schreifzugriff auf jede Ref in einem Repository hast, dann kannst Du damit das ganze Repository sowohl lesen, als auch schreiben. Gitosis kennt nur diese Art der Zugriffsberechtigung.
+Es gibt zwei Ebenen für die Zugriffsberechtigung in Gitolite. Die erste befindet sich auf Repository Ebene. Wenn Du Lese- oder Schreifzugriff auf jede Ref in einem Repository hast, dann kannst Du damit das ganze Repository sowohl lesen, als auch schreiben.
 
 <!--The second level, applicable only to "write" access, is by branch or tag within a repository.  The username, the access being attempted (`W` or `+`), and the refname being updated are known.  The access rules are checked in order of appearance in the config file, looking for a match for this combination (but remember that the refname is regex-matched, not merely string-matched).  If a match is found, the push succeeds.  A fallthrough results in access being denied.-->
 
@@ -1121,9 +1121,9 @@ Wenn ein Anwender ein geschützes, nicht öffentliches Repository auf GitHub ver
 <!--### Setting Up a User Account ###-->
 ## Einrichten eines Benutzeraccounts ###
 
-<!--The first thing you need to do is set up a free user account. If you visit the Pricing and Signup page at `http://github.com/plans` and click the "Sign Up" button on the Free account (see Figure 4-2), you’re taken to the signup page.-->
+<!--The first thing you need to do is set up a free user account. If you visit the "Plans and pricing" page at `https://github.com/pricing` and click the "Sign Up" button on the Free account (see Figure 4-2), you’re taken to the signup page.-->
 
-Um loslegen zu können, musst Du Dir einen Benutzeraccount erstellen. Gib dazu die Adresse `http://github.com/plans` in Deinem Browser ein und wähle den Button „Sign Up“ unter dem „Free account“-Bereich aus (siehe Abbildung 4-2). Danach wirst Du auf die Anmeldeseite weitergeleitet.
+Um loslegen zu können, musst Du Dir einen Benutzeraccount erstellen. Gib dazu die Adresse `https://github.com/pricing` in Deinem Browser ein und wähle den Button „Sign Up“ unter dem „Free account“-Bereich aus (siehe Abbildung 4-2). Danach wirst Du auf die Anmeldeseite weitergeleitet.
 
 <!--Figure 4-2. The GitHub plan page.-->
 

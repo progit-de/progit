@@ -239,7 +239,7 @@ Après ceci, vous pouvez obtenir Git par Git lui-même pour les mises à jour :
 Si vous souhaitez installer Git sur Linux via un installateur d'application, vous pouvez généralement le faire via le système de gestion de paquets de base fourni avec votre distribution.
 Si vous êtes sur Fedora, vous pouvez utiliser yum :
 
-	$ yum install git-core
+	$ yum install git
 
 Si vous êtes sur un système basé sur Debian, tel qu'Ubuntu, essayez apt-get :
 
@@ -248,9 +248,9 @@ Si vous êtes sur un système basé sur Debian, tel qu'Ubuntu, essayez apt-get 
 ### Installation sur Mac ###
 
 Il y a deux moyens simples d'installer Git sur Mac.
-Le plus simple et d'utiliser l'installateur graphique de Git que vous pouvez télécharger depuis les pages Google Code (voir figure 1-7) :
+Le plus simple et d'utiliser l'installateur graphique de Git que vous pouvez télécharger depuis les pages SourceForge (voir figure 1-7) :
 
-	http://code.google.com/p/git-osx-installer
+	http://sourceforge.net/projects/git-osx-installer/
 
 Insert 18333fig0107.png
 Figure 1-7. Installateur OS X de Git.
@@ -268,7 +268,7 @@ Installer Git sur Windows est très facile.
 Le projet msysGit fournit une des procédures d'installation les plus simples.
 Téléchargez simplement le fichier exe d'installateur depuis la page GitHub, et lancez-le :
 
-	http://msysgit.github.com/
+	http://msysgit.github.io
 
 Après son installation, vous avez à la fois la version en ligne de commande (avec un client SSH utile pour la suite) et l'interface graphique standard.
 
@@ -291,10 +291,10 @@ Ces variables peuvent être stockées dans trois endroits différents :
 Si vous passez l'option `--system` à `git config`, il lit et écrit ce fichier spécifiquement.
 *	Fichier `~/.gitconfig` : Spécifique à votre utilisateur.
 Vous pouvez forcer Git à lire et écrire ce fichier en passant l'option `--global`.
-*	Fichier `config` dans le répertoire Git (c'est à dire `.git/config`) du dépôt en cours d'utilisation : spécifique au seul dépôt en cours.
+*	Fichier `config` dans le répertoire Git (c'est-à-dire `.git/config`) du dépôt en cours d'utilisation : spécifique au seul dépôt en cours.
 Chaque niveau surcharge le niveau précédent, donc les valeurs dans `.git/config` surchargent celles de `/etc/gitconfig`.
 
-Sur les systèmes Windows, Git recherche le fichier `.gitconfig` dans le répertoire `$HOME` (`%USERPROFILE%` dans l'environement natif de Windows) qui est `C:\Documents and Settings\$USER` ou `C:\Users\$USER` la plupart du temps, selon la version (`$USER` devient `%USERNAME%` dans l'environement de Windows).
+Sur les systèmes Windows, Git recherche le fichier `.gitconfig` dans le répertoire `$HOME` (`%USERPROFILE%` dans l’environnement natif de Windows) qui est `C:\Documents and Settings\$USER` ou `C:\Users\$USER` la plupart du temps, selon la version (`$USER` devient `%USERNAME%` dans l’environnement de Windows).
 Il recherche tout de même `/etc/gitconfig`, bien qu'il soit relatif à la racine MSys, qui se trouve où vous aurez décidé d'installer Git sur votre système Windows.
 
 ### Votre identité ###

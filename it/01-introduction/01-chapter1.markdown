@@ -41,7 +41,7 @@ Inoltre, molti di questi sistemi trattano bene l'avere più repository remoti su
 
 ## Una Breve Storia di Git ##
 
-Come per molte grandi cose della vita, Git è nato con un po' di distruzione creativa e polemiche infuocate. Il kernel di Linux è un progetto software open source di grande portata abbastanza. Per buona parte del tempo (1991-2002) della manutenzione del kernel Linux le modifiche al software venivano passate sotto forma di patch e file compressi. Nel 2002, il progetto del kernel Linux iniziò ad utilizzare un sistema DVCS proprietario chiamato BitKeeper.
+Come per molte grandi cose della vita, Git è nato con un po' di distruzione creativa e polemiche infuocate. Il kernel di Linux è un progetto software open source di grande portata. Per buona parte del tempo (1991-2002) della manutenzione del kernel Linux le modifiche al software venivano passate sotto forma di patch e file compressi. Nel 2002, il progetto del kernel Linux iniziò ad utilizzare un sistema DVCS proprietario chiamato BitKeeper.
 
 Nel 2005 il rapporto tra la comunità che sviluppa il kernel Linux e la società commerciale che aveva sviluppato BitKeeper si ruppe, e fu revocato l'uso gratuito di BitKeeper. Ciò indusse la comunità di sviluppo di Linux (e in particolare Linus Torvalds, il creatore di Linux) a sviluppare uno strumento proprio, basandosi su alcune delle lezioni apprese durante l'utilizzo di BitKeeper. Alcuni degli obiettivi del nuovo sistema erano i seguenti:
 
@@ -69,35 +69,35 @@ Git non considera i dati né li registra in questo modo. Git considera i propri 
 Insert 18333fig0105.png 
 Figura 1-5.  Git immagazzina i dati come snapshot del progetto nel tempo.
 
-Questa è una distinzione importante tra Git e pressocché tutti gli altri VCS. Git riconsidera quasi tutti gli aspetti del controllo di versione che la maggior parte degli altri sistemi ha copiato dalle generazioni precedenti. Questo rende Git più simile a un mini filesystem con a dispoizione strumenti incredibilmente potenti che un semplice VCS. Esploreremo alcuni benefici che ottieni pensando in questo modo ai tuoi dati vedremo le ramificazioni (i _branch_) in Git nel Capitolo 3.
+Questa è una distinzione importante tra Git e pressocché tutti gli altri VCS. Git riconsidera quasi tutti gli aspetti del controllo di versione che la maggior parte degli altri sistemi ha copiato dalle generazioni precedenti. Questo rende Git più simile a un mini filesystem con a disposizione strumenti incredibilmente potenti che un semplice VCS. Esploreremo alcuni benefici che ottieni pensando in questo modo ai tuoi dati e vedremo le ramificazioni (i _branch_) in Git nel Capitolo 3.
 
 ### Quasi Tutte le Operazioni Sono Locali ###
 
 La maggior parte delle operazioni in Git, necessitano solo di file e risorse locali per operare — generalmente non occorrono informazioni da altri computer della rete. Se sei abituato ad un CVCS in cui la maggior parte delle operazioni sono soggette alle latenze di rete, questo aspetto di Git ti farà pensare che gli Dei della velocità abbiano benedetto Git con poteri soprannaturali. Poiché hai l'intera storia del progetto sul tuo disco locale, molte operazioni sembrano quasi istantanee.
 
-Per esempio, per scorrere la storia di un progetto, Git non ha bisogno di connettersi al server per scaricarla e per poi visualizzarla — la legge direttamente dal database locale. Questo significa che puoi vedere la storia del progetto quasi istantaneamente. Se vuoi vedere i cambiamenti introdotti tra la versione corrente di un file e la versione di un mese fa, Git può consultare il file di un mese fa e calcolare localmente le differenze, invece di richiedere di farlo ad un server remoto o di estrarre una precedente versione del file dal server remoto, per poi farlo in locale.
+Per esempio, per navigare la storia di un progetto, Git non ha bisogno di connettersi al server per scaricarla e per poi mostrarla: la legge direttamente dal tuo database locale. Questo significa che puoi vedere la storia del progetto quasi istantaneamente. Se vuoi vedere le modifiche introdotte tra la versione corrente e la versione di un mese fa di un file, Git può accedere al file com'era un mese fa e calcolare le differenze localmente, invece di dover chiedere a un server remoto di farlo o di scaricare dal server remoto una versione precedente del file, per poi farlo in locale.
 
-Questo significa anche che sono minime le cose che non si possono fare se si è offline o non connesso alla VPN. Se sei in aereo o sul treno e vuoi fare un po' di lavoro, puoi eseguire tranquillamente il commit, anche se non sei connesso alla rete per fare l'upload. Se tornando a casa, trovi che il tuo client VPN non funziona correttamente, puoi comunque lavorare. In molti altri sistemi, fare questo è quasi impossibile o penoso. Con Perforce, per esempio, puoi fare ben poco se non sei connesso al server; e con Subversion e CVS, puoi modificare i file, ma non puoi inviare i cambiamenti al tuo database (perché il database è offline). Tutto ciò non ti può sembrare una gran cosa, tuttavia potresti rimanere di stucco dalla differenza che Git può fare.
+Questo significa anche che sono pochissime le cose che non puoi fare se sei offline o non sei connesso alla VPN. Se sei in aereo o sul treno e vuoi fare un po' di lavoro, puoi committare tranquillamente in attesa di essere di nuovo connesso per fare l'upload. Se vai a casa e il tuo client VPN non funziona correttamente, puoi lavorare ugualmente. In molti altri sistemi questo è impossibile o molto penoso. Con Perforce, per esempio, puoi fare ben poco se non sei connesso al server; e con Subversion e CVS, puoi modificare i file, ma non puoi inviare le modifiche al tuo database (perché il database è offline). Tutto ciò potrebbe non sembrarti una gran cosa, ma potrebbe sorprenderti quanta differenza possa fare.
 
 ### Git Ha Integrità ###
 
-Qualsiasi cosa in Git è controllata, tramite checksum, prima di essere salvata ed è referenziata da un checksum. Questo significa che è impossibile cambiare il contenuto di qualsiasi file o directory senza che Git lo sappia. Questa è una funzionalità interna di Git al più basso livello ed è intrinseco nella sua filosofia. Non puoi perdere informazioni nel transito o avere corruzioni di file senza che Git non sia in grado di accorgersene.
+Qualsiasi cosa in Git è controllata, tramite checksum, prima di essere salvata ed è referenziata da un checksum. Questo significa che è impossibile cambiare il contenuto di qualsiasi file o directory senza che Git lo sappia. Questa è una funzionalità interna di basso livello di Git ed è intrinseco della sua filosofia. Non può capitare che delle informazioni in transito si perdano o che un file si corrompa senza che Git non sia in grado di accorgersene.
 
-Il meccanismo che Git usa per fare questo checksum, è un hash, denominato SHA-1. Si tratta di una stringa di 40-caratteri, composta da caratteri esadecimali (0–9 ed a–f) e calcolata in base al contenuto di file o della struttura della directory in Git. Un hash SHA-1 assomiglia a qualcosa come:
+Il meccanismo che Git usa per fare questo checksum è un hash chiamato SHA-1. Si tratta di una stringa di 40-caratteri, composta da caratteri esadecimali (0–9 ed a–f) e calcolata in base al contenuto di file o della struttura della directory in Git. Un hash SHA-1 assomiglia a qualcosa come:
 
 	24b9da6552252987aa493b52f8696cd6d3b00373
 
-in Git, questi valori di hash si vedono dappertutto, perché Git li usa tantissimo. Infatti, Git immagazzina ogni cosa, nel proprio database indirizzabile, non per nome di file, ma per il valore di hash del suo contenuto.
+Vedrai questi hash dappertutto in Git perché li usa tantissimo. Infatti Git salva qualsiasi cosa nel suo database, e il riferimento ad un file non è basato sul nome del file, ma sull'hash del suo contenuto.
 
 ### Git Generalmente Aggiunge Solo Dati ###
 
-Quando si fanno delle azioni in Git, quasi tutte aggiungono solo dati al database di Git. E' piuttosto difficile che si porti il sistema a fare qualcosa che non sia annullabile o a cancellare i dati in una qualche maniera. Come in altri VCS, si possono perdere o confondere le modifiche, di cui non si è ancora fatto il commit; ma dopo aver fatto il commit di uno snapshot in Git, è veramente difficile perderle, specialmente se si esegue regolarmente, il push del proprio database su di un altro repository.
+Quasi tutte le azioni in Git aggiungono dati al database di Git. È piuttosto difficile fare qualcosa che non sia annullabile o che cancelli i dati in una qualche maniera. Come negli altri VCS, puoi perdere o fare confusione con le modifiche che non hai ancora committato, ma dopo aver committato uno snapshot in Git, è veramente difficile perderle, specialmente se regolarmente fai il push del tuo database su un altro repository.
 
-Questo rende l'uso di Git un piacere perché sappiamo che possiamo sperimentare senza il pericolo di perdere seriamente le cose. Per un maggior approfondimento su come Git salva i dati e come puoi recuperare i dati che sembrano persi, vedi "Sotto il Cofano" nel Capitolo 9.
+Questo rende piaceole l'uso di Git perché sappiamo che possiamo sperimentare senza il pericolo di causare danni pesanti. Per un maggior approfondimento su come Git salvi i dati e come tu possa recuperare quelli che sembrino persi, consulta il Capitolo 9.
 
 ### I Tre Stati ###
 
-Ora, presta attenzione. La prima cosa da ricordare sempre di Git se vuoi affrontare al meglio il processo di apprendimento. I tuoi file in Git possono essere in tre stati: _committed_ (committati), _modified_ (modificati) e _staged_ (in stage). Committato significa che il file è al sicuro nel database locale. Modificato significa che il file è stato modificato, ma non è ancora stato committato nel database. In stage significa che hai contrassegnato un file, modificato nella versione corrente, perché venga inserito nello snapshot alla prossima commit.
+Ora, presta attenzione. La prima cosa da ricordare sempre di Git se vuoi affrontare al meglio il processo di apprendimento è che i tuoi file in Git possono essere in tre stati: _committed_ (committati), _modified_ (modificati) e _staged_ (in stage). Committato significa che il file è al sicuro nel database locale. Modificato significa che il file è stato modificato, ma non è ancora stato committato nel database. In stage significa che hai contrassegnato un file, modificato nella versione corrente, perché venga inserito nello snapshot alla prossima commit.
 
 Questo ci porta alle tre sezioni principali di un progetto Git: la directory di Git, la directory di lavoro e l'area di stage.
 
@@ -113,8 +113,8 @@ L'area di stage è un file, contenuto generalmente nella directory di Git, con t
 Il flusso di lavoro (_workflow_) di base in Git funziona così:
 
 1. Modifica i file nella tua directory di lavoro
-2. Fanno lo stage, aggiungendone le istantanee all'area di stage
-3. Committa, che salva i file nell'area di stage in un'istantanea (_snapshot_) permanente nella tua directory di Git.
+2. Fanne lo stage, aggiungendone le istantanee all'area di stage
+3. Committa, ovvero salva i file nell'area di stage in un'istantanea (_snapshot_) permanente nella tua directory di Git.
 
 Se una particolare versione di un file è nella directory git, viene considerata già committata. Se il file è stato modificato, ma è stato aggiunto all'area di staging, è _in stage_. E se è stato modificato da quando è stata estratto, ma non è _in stage_, è modificato.  Nel Capitolo 2, imparerai di più su questi stati e come trarne vantaggio o saltare la parte di staging.
 
@@ -153,36 +153,40 @@ Dopo aver fatto questo, puoi scaricare gli aggiornamenti di Git con lo stesso Gi
 
 Se vuoi installare Git su Linux, tramite una installazione da binario, generalmente puoi farlo con lo strumento base di amministrazione dei pacchetti della tua distribuzione. Se usi Fedora, puoi usare yum:
 
-	$ yum install git-core
+	$ yum install git
 
-O se sei su una distribuzione basata su Debian, come Ubuntu, prova apt-get:
+O, se usi una distribuzione basata su Debian (come Ubuntu) prova apt-get:
 
 	$ apt-get install git
 
 ### Installazione su Mac ###
 
-Ci sono due metodi per installare Git su Mac. Il più semplice è usare l'installer grafico di Git, che puoi scaricare dalla pagina di Google Code (vedi Figura 1-7):
+Ci sono due metodi per installare facilmente Git su Mac. Il più semplice è usare l'installazione l'installer grafico di Git, che puoi scaricare da SourceForge (vedi Figura 1-7):
 
-	http://code.google.com/p/git-osx-installer
+	http://sourceforge.net/projects/git-osx-installer/
 
 Insert 18333fig0107.png 
 Figura 1-7. Installer di Git per OS X.
 
-L'altro metodo è installare Git con MacPorts (`http://www.macports.org`). Se hai MacPorts installato puoi farlo con:
+La prima alternativa è usando MacPorts (`http://www.macports.org`). Se hai già installato MacPorts puoi installare Git con:
 
-	$ sudo port install git-core +svn +doc +bash_completion +gitweb
+	$ sudo port install git +svn +doc +bash_completion +gitweb
 
 Non ti occorre aggiungere tutti i pacchetti extra, ma probabilmente vorrai includere +svn, nel caso tu debba usare Git con i repository di Subversion (vedi Capitolo 8).
+
+La seconda alternativa è Homebrew (`http://brew.sh/`). Se hai già installato Homebrew puoi installare Git con:
+
+	$ brew install git
 
 ### Installare su Windows ###
 
 Installare Git su Windows è davvero facile. Il progetto msysGit ha una delle procedure di installazione più facili. Semplicemente scarica l'eseguibile dalla pagina di GitHub e lancialo:
 
-	http://msysgit.github.com/
+	http://msysgit.github.io/
 
 Una volta installato avrai a disposizione sia la versione da riga di comando (incluso un client SSH ti servirà in seguito) sia l'interfaccia grafica (_GUI_) standard.
 
-Nota sull'uso su Windows: dovresti usare Git con la shell msysGit fornita (stile Unix) perché permette di usare le complesse linee di comando di questo libro. Se hai bisogno, per qualche ragione, di usare la shell nativa di Windows / la console a linea di comando, devi usare le doppie virgolette invece delle virgolette semplici (per i parametri con che contengono spazi) e devi virgolettare i parametri che terminano con l'accento circonflesso (^) se questi sono al termine della linea, poiché in Windows è uno dei simboli di proseguimento.
+Nota sull'uso su Windows: dovresti usare Git con la shell msysGit fornita (stile Unix) perché permette di usare le complesse linee di comando di questo libro. Se hai bisogno, per qualche ragione, di usare la shell nativa di Windows / la console a linea di comando, devi usare le doppie virgolette invece delle virgolette singole (per i parametri con che contengono spazi) e devi virgolettare i parametri che terminano con l'accento circonflesso (^) se questi sono al termine della linea, poiché in Windows è uno dei simboli di proseguimento.
 
 ## Prima Configurazione di Git ##
 

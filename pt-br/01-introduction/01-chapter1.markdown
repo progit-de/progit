@@ -32,7 +32,7 @@ Entretanto, esse arranjo também possui grandes desvantagens. O mais óbvio é q
 
 ### Sistemas de Controle de Versão Distribuídos ###
 
-É aí que surgem os Sistemas de Controle de Versão Distribuídos (Distributed Version Control System ou DVCS). Em um DVCS (tais como Git, Mercurial, Bazaar or Darcs), os clientes não apenas fazem cópias das últimas versões dos arquivos: eles são cópias completas do repositório. Assim, se um servidor falha, qualquer um dos repositórios dos clientes pode ser copiado de volta para o servidor para restaurá-lo. Cada checkout (resgate) é na prática um backup completo de todos os dados (veja Figura 1-3).
+É aí que surgem os Sistemas de Controle de Versão Distribuídos (Distributed Version Control System ou DVCS). Em um DVCS (tais como Git, Mercurial, Bazaar ou Darcs), os clientes não apenas fazem cópias das últimas versões dos arquivos: eles são cópias completas do repositório. Assim, se um servidor falha, qualquer um dos repositórios dos clientes pode ser copiado de volta para o servidor para restaurá-lo. Cada checkout (resgate) é na prática um backup completo de todos os dados (veja Figura 1-3).
 
 Insert 18333fig0103.png
 Figura 1-3. Diagrama de Controle de Versão Distribuído.
@@ -161,9 +161,9 @@ Ou se você estiver em uma distribuição baseada no Debian, como o Ubuntu, use 
 
 ### Instalando no Mac ###
 
-Existem duas formas fáceis de se instalar Git em um Mac. A mais fácil delas é usar o instalador gráfico do Git, que você pode baixar da página do Google Code (veja Figura 1-7):
+Existem duas formas fáceis de se instalar Git em um Mac. A mais fácil delas é usar o instalador gráfico do Git, que você pode baixar da página do SourceForge (veja Figura 1-7):
 
-    http://code.google.com/p/git-osx-installer
+    http://sourceforge.net/projects/git-osx-installer/
 
 Insert 18333fig0107.png
 Figura 1-7. Instalador Git OS X.

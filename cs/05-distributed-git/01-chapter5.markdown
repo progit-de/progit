@@ -6,7 +6,7 @@ V této kapitole se dozvíte, jak pracovat se systémem Git v distribuovaném pr
 
 ## Distribuované pracovní postupy ##
 
-Na rozdíl od centralizovaných systémů správy verzí (CVCS) umožňuje distribuovaný charakter systému Git mnohem větší flexibilitu při spolupráci vývojářů na projektech. V centralizovaných systémech představuje každý vývojář samostatný uzel, pracující více či méně na stejné úrovni vůči centrálnímu úložišti. Naproti tomu je v systému Git každý vývojář potenciálním uzlem i úložištěm, každý vývojář může přispívat kódem do jiných repozitářů i spravovat veřejný repozitář, na němž mohou ostatní založit svou práci a do nějž mohou přispívat. Tím se otvírá široké spektrum možností organizace práce pro váš projekt a/nebo váš tým. Zkusíme se tedy podívat na pár častých postupů, které tato flexibilita umožňuje. Uvedeme přednosti i eventuální slabiny všech těchto postupů. Budete si moci vybrat některý z postupů nebo je navzájem kombinovat a spojovat jejich funkce.
+Na rozdíl od centralizovaných systémů správy verzí (CVCS) umožňuje distribuovaný charakter systému Git mnohem větší flexibilitu při spolupráci vývojářů na projektech. V centralizovaných systémech představuje každý vývojář samostatný uzel, pracující více či méně na stejné úrovni vůči centrálnímu úložišti. Naproti tomu je v systému Git každý vývojář potenciálním uzlem i úložištěm, každý vývojář může přispívat kódem do jiných repozitářů i spravovat veřejný repozitář, na němž mohou ostatní založit svou práci a do nějž mohou přispívat. Tím se pro váš projekt a váš tým otvírá široké spektrum pracovních postupů. Zkusíme se tedy podívat na pár častých přístupů, které tato flexibilita umožňuje. Uvedeme jejich přednosti i eventuální slabiny. Budete si moci vybrat některý z postupů nebo je navzájem kombinovat a spojovat jejich vlastnosti.
 
 ### Centralizovaný pracovní postup ###
 
@@ -17,12 +17,12 @@ Obrázek 5-1. Centralizovaný pracovní postup
 
 To znamená, že pokud dva vývojáři klonují z centrálního úložiště a oba provedou změny, jen první z nich, který odešle své změny, to může provést bez komplikací. Druhý vývojář musí před odesláním svých změn začlenit práci prvního vývojáře do své, aby nepřepsal jeho změny. Tento koncept platí jak pro Git, tak pro Subversion (popř. jakýkoli CVCS). I v systému Git funguje bez problémů.
 
-Pokud pracujete v malém týmu nebo už jste ve své společnosti nebo ve svém týmu zvyklí na centralizovaný pracovní postup, můžete v něm beze všeho pokračovat. Jednoduše vytvořte repozitář a přidělte všem ze svého týmu oprávnění k odesílání dat. Git neumožní uživatelům, aby se navzájem přepisovali. Pokud některý z vývojářů naklonuje data, provede změny a poté se je pokusí odeslat, a jiný vývojář mezitím odeslal svoje revize, server tyto změny odmítne. Git vývojáři při odmítnutí sdělí, že se pokouší odeslat změny, které nesměřují „rychle vpřed“, což není možné provést, dokud nevyzvedne a nezačlení stávající data z repozitáře.
+Pokud pracujete v malém týmu nebo už jste ve své společnosti nebo ve svém týmu zvyklí na centralizovaný pracovní postup, můžete v něm beze všeho pokračovat. Jednoduše vytvořte repozitář a přidělte všem ze svého týmu oprávnění k odesílání dat. Git neumožní uživatelům, aby se navzájem přepisovali. Pokud některý z vývojářů naklonuje data, provede změny a poté se je pokusí odeslat, a jiný vývojář mezitím odeslal svoje revize, server tyto změny odmítne. Git vývojáři při odmítnutí sdělí, že se pokouší odeslat změny, které nesměřují „rychle vpřed“, což není možné provést, dokud nevyzvedne a nezačlení (fetch and merge) stávající data z repozitáře.
 Tento pracovní postup může být pro mnoho lidí zajímavý, protože je to schéma, které jsou zvyklí používat a jsou s ním spokojeni.
 
 ### Pracovní postup s integračním manažerem ###
 
-Protože Git umožňuje, abyste měli několik vzdálených repozitářů, lze použít pracovní postup, kdy má každý vývojář oprávnění k zápisu do vlastního veřejného repozitáře a oprávnění pro čtení k repozitářům všech ostatních. Tento scénář často zahrnuje jeden standardní repozitář, který reprezentuje „oficiální“ projekt. Chcete-li do tohoto projektu přispívat, vytvořte vlastní veřejný klon projektu a odešlete do něj změny, které jste provedli. Poté odešlete správci hlavního projektu žádost, aby do projektu natáhl vaše změny. Váš repozitář může přidat jako vzdálený repozitář, lokálně otestovat vaše změny, začlenit je do své větve a odeslat zpět do svého repozitáře. Postup práce je následující (viz obrázek 5-2):
+Protože Git umožňuje, abyste měli několik vzdálených repozitářů, lze použít pracovní postup, kdy má každý vývojář oprávnění k zápisu do vlastního veřejného repozitáře a oprávnění pro čtení k repozitářům všech ostatních. Tento scénář často zahrnuje jeden standardní repozitář, který reprezentuje „oficiální“ projekt. Chcete-li do tohoto projektu přispívat, vytvořte vlastní veřejný klon projektu a odešlete do něj změny, které jste provedli. Poté odešlete správci hlavního projektu žádost, aby do projektu natáhl vaše změny. Správce může váš repozitář přidat jako vzdálený repozitář, lokálně otestovat vaše změny, začlenit je do své větve a odeslat zpět do svého repozitáře. Postup práce je následující (viz obrázek 5-2):
 
 1. Správce projektu odešle data do svého veřejného repozitáře.
 2. Přispěvatel naklonuje tento repozitář a provede změny.
@@ -34,7 +34,7 @@ Protože Git umožňuje, abyste měli několik vzdálených repozitářů, lze p
 Insert 18333fig0502.png
 Obrázek 5-2. Pracovní postup s integračním manažerem
 
-Tento pracovní postup je velmi rozšířený na stránkách jako GitHub, kde je snadné rozštěpit projekt a odeslat změny do své odštěpené části, kde jsou pro každého k nahlédnutí. Jednou z hlavních předností tohoto postupu je, že můžete pracovat bez přerušení a správce hlavního repozitáře může natáhnout vaše změny do projektu, kdykoli uzná za vhodné. Přispěvatelé nemusí čekat, až budou jejich změny začleněny do projektu – každá strana může pracovat svým tempem.
+Tento pracovní postup je velmi rozšířený na serverech jako je GitHub, kde je snadné rozštěpit projekt a odeslat změny do své odštěpené části, kde jsou pro každého k nahlédnutí. Jednou z hlavních předností tohoto postupu je, že můžete pracovat bez přerušení a správce hlavního repozitáře může natáhnout vaše změny do projektu, kdykoli uzná za vhodné. Přispěvatelé nemusí čekat, až budou jejich změny začleněny do projektu – každá strana může pracovat svým tempem.
 
 ### Pracovní postup s diktátorem a poručíky ###
 
@@ -174,7 +174,7 @@ John má referenci ke změnám, které odeslala Jessica, ale než bude moci sám
 Sloučení probíhá hladce, Johnova historie revizí teď vypadá jako na obrázku 5-5.
 
 Insert 18333fig0505.png
-Obrázek 5-5. Johnův repozitář po začlenění větve origin/master
+Obrázek 5-5. Johnův repozitář po začlenění větve `origin/master`
 
 John nyní může otestovat svůj kód, aby se ujistil, že stále pracuje správně, a pak může odeslat svou novou sloučenou práci na server:
 
@@ -215,7 +215,7 @@ Jessica považuje svou tematickou větev za dokončenou, ale chce vědět, do č
 
 	    removed invalid default value
 
-Jessica nyní může začlenit tematickou větev do své hlavní větve, tamtéž začlenit i Johnovu práci (`origin/master`) do své větve `master` a vše odeslat zpět na server. Nejprve se přepne zpět na svou hlavní větev, aby do ní mohla vše integrovat:
+Jessica nyní může začlenit tematickou větev do své větve `master`, začlenit (merge) i Johnovu práci (`origin/master`) do své větve `master` a vše odeslat zpět na server. Nejprve se přepne zpět na svou větev `master`, aby do ní mohla vše integrovat:
 
 	$ git checkout master
 	Switched to branch "master"
@@ -255,7 +255,7 @@ Všichni vývojáři zapsali několik revizí a úspěšně začlenili práci os
 Insert 18333fig0510.png
 Obrázek 5-10. Historie Jessicy po odeslání všech změn zpět na server
 
-Toto je jeden z nejjednodušších pracovních postupů. Po určitou dobu pracujete, obvykle na nějaké tematické větvi, a když je připravena k integraci, začleníte ji do hlavní větve. Chcete-li tuto práci sdílet, začleníte ji do své hlavní větve. Poté vyzvednete a začleníte větev `origin/master`, jestliže se změnila. Nakonec odešlete všechna data do větve `master` na serveru. Obecná posloupnost kroků je naznačena na obrázku 5-11.
+Toto je jeden z nejjednodušších pracovních postupů. Po určitou dobu pracujete, obvykle na nějaké tematické větvi, a když je připravena k integraci, začleníte ji do své větve `master`. Chcete-li tuto práci sdílet, začleníte ji do své větve `master`. Poté vyzvednete (fetch) a začleníte (merge) větev `origin/master`, jestliže se změnila. Nakonec odešlete všechna data do větve `master` na serveru. Obecná posloupnost kroků je naznačena na obrázku 5-11.
 
 Insert 18333fig0511.png
 Obrázek 5-11. Obecná posloupnost kroků u jednoduchého pracovního postupu s více vývojáři v systému Git
@@ -328,7 +328,7 @@ Tady nastává určitý problém. Musí odeslat práci začleněnou ve své vět
 	To jessica@githost:simplegit.git
 	   fba9af8..cd685d1  featureB -> featureBee
 
-Říká se tomu refspec. Více o vzorcích refspec systému Git a různých možnostech, k nimž je lze využít, najdete v kapitole 9.
+Říká se tomu *refspec*. Více o vzorcích refspec systému Git a různých možnostech, k nimž je lze využít, najdete v kapitole 9.
 
 Poté pošle John Jessice e-mail, že odeslal několik změn do větve `featureA`, a poprosí ji, aby je ověřila. Jessica spustí příkaz `git fetch`, jímž tyto změny stáhne.
 
@@ -532,7 +532,26 @@ Nejprve je třeba nastavit sekci „imap“ v souboru `~/.gitconfig`. Každou ho
 	  sslverify = false
 
 Pokud váš server IMAP nepoužívá SSL, dva poslední řádky zřejmě nebudou vůbec třeba a hodnota hostitele bude `imap://`, a nikoli `imaps://`.
-Až toto nastavení dokončíte, můžete použít příkaz `git send-email`, jímž umístíte sérii patchů do složky Koncepty (Drafts) zadaného serveru IMAP:
+Až toto nastavení dokončíte, můžete použít příkaz `git imap-send`, jímž umístíte sérii záplat (patch) do složky Koncepty (Drafts) zadaného serveru IMAP:
+
+	$ cat *.patch |git imap-send
+	Resolving imap.gmail.com... ok
+	Connecting to [74.125.142.109]:993... ok
+	Logging in...
+	sending 2 messages
+	100% (2/2) done
+
+V tomto okamžiku byste měli být schopni přejít do složky Drafts, změnit pole To na mailing list, do kterého záplatu posíláte, případně pole CC na správce nebo na osobu zodpovědnou za tuto část, a odeslat.
+
+Záplaty můžete odesílat i přes SMTP server. Stejně jako v předchozím případu můžete nastavit sérií příkazů `git config` každou hodnotu zvlášť, nebo je můžete vložit ručně do sekce sendemail souboru `~/.gitconfig`:
+
+	[sendemail]
+	  smtpencryption = tls
+	  smtpserver = smtp.gmail.com
+	  smtpuser = user@gmail.com
+	  smtpserverport = 587
+
+Jakmile je to hotové, můžete záplaty odeslat příkazem `git send-email`:
 
 	$ git send-email *.patch
 	0001-added-limit-to-log-function.patch
@@ -558,8 +577,6 @@ Git poté vytvoří log s určitými informacemi, který bude pro každou zápla
 	References: <y>
 
 	Result: OK
-
-V tomto okamžiku můžete přejít do své složky Koncepty, změnit pole Komu na adresáty z poštovní konference, jimž chcete záplatu odeslat, případně přidat kopii na správce nebo osobu odpovědnou za tuto část a e-mail odeslat.
 
 ### Shrnutí ###
 
@@ -594,7 +611,7 @@ Pokud dostanete záplatu od někoho, kdo ji vygeneroval příkazem `git diff` ne
 
 Tím změníte soubory ve svém pracovním adresáři. Je to téměř stejné, jako byste k aplikaci záplaty použili příkaz `patch -p1`. Tento postup je však přísnější a nepřijímá tolik přibližných shod jako příkaz patch. Poradí si také s přidanými, odstraněnými a přejmenovanými soubory, jsou-li popsány ve formátu `git diff`, což příkaz `patch` nedělá. A konečně příkaz `git apply` pracuje na principu „aplikuj vše, nebo zruš vše“. Buď jsou tedy aplikovány všechny soubory, nebo žádný. Naproti tomu příkaz `patch` může aplikovat soubory záplaty jen částečně a zanechat váš pracovní adresář v neurčitém stavu. Příkaz `git apply` je tedy celkově víc paranoidní než příkaz `patch`. Tímto příkazem ostatně ani nezapíšete revizi, po jeho spuštění budete muset připravit a zapsat provedené změny ručně.
 
-Příkaz git apply můžete použít také ke kontrole, zda bude záplata aplikována čistě. V takovém případě použijte na patch příkaz `git apply --check`:
+Příkaz `git apply` můžete použít také ke kontrole, zda bude záplata aplikována čistě. V takovém případě použijte na patch příkaz `git apply --check`:
 
 	$ git apply --check 0001-seeing-if-this-helps-the-gem.patch
 	error: patch failed: ticgit.gemspec:1
@@ -615,7 +632,7 @@ K aplikaci patche vygenerovaného příkazem `format-patch` použijte příkaz `
 
 	Limit log functionality to the first 20
 
-Toto je začátek výstupu příkazu format-patch, s nímž jsme se setkali v předchozí části. Zároveň je to také platný e-mailový formát mbox. Jestliže vám přispěvatel řádně poslal záplatu e-mailem pomocí příkazu git send-email a vy záplatu stáhnete do formátu mbox, můžete na soubor mbox použít příkaz git am, který začne aplikovat všechny záplaty, které najde. Jestliže spustíte poštovního klienta, který dokáže uložit několik e-mailů ve formátu mbox, můžete do jednoho souboru uložit celou sérii záplat a příkazem git am je pak aplikovat všechny najednou.
+Toto je začátek výstupu příkazu format-patch, s nímž jsme se setkali v předchozí části. Zároveň je to také platný e-mailový formát mbox. Jestliže vám přispěvatel řádně poslal záplatu e-mailem pomocí příkazu `git send-email` a vy záplatu stáhnete do formátu mbox, můžete na soubor mbox použít příkaz `git am`, který začne aplikovat všechny záplaty, které najde. Jestliže spustíte poštovního klienta, který dokáže uložit několik e-mailů ve formátu mbox, můžete do jednoho souboru uložit celou sérii záplat a příkazem `git am` je pak aplikovat všechny najednou.
 
 Pokud však někdo nahrál soubor záplaty vygenerovaný příkazem `format-patch` do tiketového nebo podobného systému, můžete soubor uložit lokálně a poté na tento uložený soubor použít příkaz `git am`. Tímto způsobem záplatu aplikujete:
 

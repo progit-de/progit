@@ -120,12 +120,7 @@ In order to clone your repository to create a new bare repository, you run the c
 	Cloning into bare repository 'my_project.git'...
 	done.
 
-<!-- This next part doesn't fit the actual output as shown, the confusing part
-     of the output is no longer shown in the command output. I would like to asks
-     the original author to modify the text.
--->
-
-The output for this command is a little confusing. Since `clone` is basically a `git init` then a `git fetch`, we see some output from the `git init` part, which creates an empty directory. The actual object transfer gives no output, but it does happen. You should now have a copy of the Git directory data in your `my_project.git` directory.
+You should now have a copy of the Git directory data in your `my_project.git` directory.
 
 This is roughly equivalent to something like
 
@@ -232,7 +227,11 @@ You just append them to your `authorized_keys` file:
 	$ cat /tmp/id_rsa.josie.pub >> ~/.ssh/authorized_keys
 	$ cat /tmp/id_rsa.jessica.pub >> ~/.ssh/authorized_keys
 
-Now, you can set up an empty repository for them by running `git init` with the `--bare` option, which initializes the repository without a working directory:
+Key-based SSH authentication usually enforces security by requiring restricted rights on the involved files. To prevent SSH from refusing to work, type this:
+
+	$ chmod -R go= ~/.ssh
+
+Now, you can set up an empty repository for your users by running `git init` with the `--bare` option, which initializes the repository without a working directory:
 
 	$ cd /opt/git
 	$ mkdir project.git
@@ -602,7 +601,7 @@ That rule will just get added to the ruleset for the `gitolite` repository.
 
 At this point you might be wondering how the access control rules are actually applied, so let’s go over that briefly.
 
-There are two levels of access control in Gitolite.  The first is at the repository level; if you have read (or write) access to *any* ref in the repository, then you have read (or write) access to the repository.  This is the only access control that Gitosis had.
+There are two levels of access control in Gitolite.  The first is at the repository level; if you have read (or write) access to *any* ref in the repository, then you have read (or write) access to the repository.
 
 The second level, applicable only to "write" access, is by branch or tag within a repository.  The username, the access being attempted (`W` or `+`), and the refname being updated are known.  The access rules are checked in order of appearance in the config file, looking for a match for this combination (but remember that the refname is regex-matched, not merely string-matched).  If a match is found, the push succeeds.  A fallthrough results in access being denied.
 
@@ -627,7 +626,7 @@ In addition to restricting what branches a user can push changes to, you can als
 
         -   VREF/NAME/Makefile  =   @junior_devs
 
-User who are migrating from the older Gitolite should note that there is a significant change in behaviour with regard to this feature; please see the migration guide for details.
+Users who are migrating from the older Gitolite should note that there is a significant change in behaviour with regard to this feature; please see the migration guide for details.
 
 ### Personal Branches ###
 
@@ -743,13 +742,13 @@ GitHub is by far the largest open source Git hosting site and it’s also one of
 
 ### GitHub ###
 
-GitHub is slightly different than most code-hosting sites in the way that it namespaces projects. Instead of being primarily based on the project, GitHub is user centric. That means when I host my `grit` project on GitHub, you won’t find it at `github.com/grit` but instead at `github.com/schacon/grit`. There is no canonical version of any project, which allows a project to move from one user to another seamlessly if the first author abandons the project.
+GitHub is slightly different than most code-hosting sites in the way that it namespaces projects. Instead of being primarily based on the project, GitHub is user-centric. That means when I host my `grit` project on GitHub, you won’t find it at `github.com/grit` but instead at `github.com/schacon/grit`. There is no canonical version of any project, which allows a project to move from one user to another seamlessly if the first author abandons the project.
 
 GitHub is also a commercial company that charges for accounts that maintain private repositories, but anyone can quickly get a free account to host as many open source projects as they want. We’ll quickly go over how that is done.
 
 ### Setting Up a User Account ###
 
-The first thing you need to do is set up a free user account. If you visit the Pricing and Signup page at `http://github.com/plans` and click the "Sign Up" button on the Free account (see Figure 4-2), you’re taken to the signup page.
+The first thing you need to do is set up a free user account. If you visit the "Plans and pricing" page at `https://github.com/pricing` and click the "Sign Up" button on the Free account (see Figure 4-2), you’re taken to the signup page.
 
 Insert 18333fig0402.png
 Figure 4-2. The GitHub plan page.

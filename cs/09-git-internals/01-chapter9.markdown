@@ -27,7 +27,7 @@ Spustíte-li v novém nebo existujícím adresáři příkaz `git init`, Git vyt
 	objects/
 	refs/
 
-Možná ve svém adresáři najdete i další soubory. Toto je však příkazem `git init` čerstvě vytvořený repozitář s výchozím obsahem. Adresář `branches` se už v novějších verzích systému Git nepoužívá a soubor `description` používá pouze program GitWeb, o tyto dvě položky se tedy nemusíte starat. Soubor `config` obsahuje jednotlivá nastavení pro konfiguraci vašeho projektu a v adresáři `info` je uchováván globální soubor .gitignore s maskami ignorovaných souborů a adresářů, které si nepřejete sledovat. Adresář `hooks` obsahuje skripty zásuvných modulů na straně klienta nebo serveru, které jsme podrobně popisovali v kapitole 6.
+Možná ve svém adresáři najdete i další soubory. Toto je však příkazem `git init` čerstvě vytvořený repozitář s výchozím obsahem. Adresář `branches` se už v novějších verzích systému Git nepoužívá a soubor `description` používá pouze program GitWeb, takže o tyto dvě položky se nemusíte starat. Soubor `config` obsahuje konfigurační nastavení vašeho projektu a v adresáři `info` je uložen globální soubor `exclude` s maskami ignorovaných souborů a adresářů, které chcete explicitně ignorovat prostřednictvím souboru `.gitignore`. Adresář `hooks` obsahuje skripty zásuvných modulů na straně klienta nebo serveru, které jsme podrobně popisovali v kapitole 7.
 
 Zbývají čtyři důležité položky: soubory `HEAD` a `index` a adresáře `objects` a `refs`. To jsou ústřední součásti adresáře Git. V adresáři `objects` je uložen celý obsah vaší databáze, v adresáři `refs` jsou uloženy ukazatele na objekty revizí v datech (větve). Soubor `HEAD` ukazuje na větev, na níž se právě nacházíte, a soubor `index` je pro systém Git úložištěm informací o oblasti připravených změn. Na každou z těchto částí se teď podíváme podrobněji, abyste pochopili, jak Git pracuje.
 
@@ -433,7 +433,7 @@ Vraťme se zpět do databáze objektů vašeho testovacího repozitáře Git. V 
 
 Git komprimuje obsah těchto souborů metodou zlib a uložená data tak nejsou příliš velká. Všechny tyto soubory zabírají dohromady pouhých 925 bytů. Do repozitáře tak nyní přidáme větší objem dat, na němž si budeme moci ukázat jednu zajímavou funkci systému Git. Z knihovny Grit, s níž jsme pracovali před časem, přidejte soubor „repo.rb“. Je to soubor se zdrojovým kódem o velikosti asi 12 kB:
 
-	$ curl https://raw.github.com/mojombo/grit/master/lib/grit/repo.rb > repo.rb
+	$ curl -L https://raw.github.com/mojombo/grit/master/lib/grit/repo.rb > repo.rb
 	$ git add repo.rb
 	$ git commit -m 'added repo.rb'
 	[master 484a592] added repo.rb

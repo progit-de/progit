@@ -33,10 +33,10 @@ vertaling moeten proberen te maken.
 
 Veel succes en plezier bij het vertalen...
 -->
-<!-- SHA-1 of last checked en-version: fbf24105 -->
+<!-- SHA-1 of last checked en-version: 4cefec -->
 # Git en andere systemen #
 
-Het is geen perfecte wereld. Meestal kan je niet meteen elk project waar je mee in aanraking komt omzetten naar Git. Soms zit je vast op een project dat een ander VCS gebruikt, en vaak is dat systeem Subversion. In het eerste gedeelte van dit hoofdstuk zal je leren over `git svn`, het bidirectionele Subversion uitwissel tool van Git.
+Het is geen perfecte wereld. Meestal kan je niet meteen elk project waar je mee in aanraking komt omzetten naar Git. Soms zit je vast op een project dat een ander VCS gebruikt, en vaak is dat systeem Subversion. In het eerste gedeelte van dit hoofdstuk zal je leren over `git svn`, de bidirectionele Subversion uitwissel tool van Git.
 
 Op een gegeven moment zal je een bestaande project willen omzetten naar Git. Het tweede gedeelte van dit hoofdstuk beschrijft hoe je projecten naar Git kunt migreren: eerst uit Subversion, dan vanuit Perforce, en als laatste via een eigen import script voor een niet standaard import geval.
 
@@ -44,7 +44,7 @@ Op een gegeven moment zal je een bestaande project willen omzetten naar Git. Het
 
 Op dit moment maakt het merendeel van open source ontwikkelprojecten en een groot aantal bedrijfsprojecten gebruik van Subversion om hun broncode te beheren. Het is het populairste open source VCS en bestaat al bijna tien jaar. Het lijkt ook in veel aspecten op CVS, wat daarvoor de grootste speler was in de code-beheer wereld.
 
-Een van de beste features van Git is een bidirectionele brug naar Subversion genaamd `git svn`. Dit tool staat je toe om Git als een volwaardige client van een Subversion server te gebruiken, zodat je alle lokale eigenschappen van Git kunt gebruiken en daarna naar een Subversion server kunt pushen alsof je Subversion lokaal gebruikt. Dit houdt in dat je lokaal kunt branchen en mergen, het staging gebied gebruiken, kunt rebasen en cherry-picken enzovoorts, terwijl je medewerkers verder werken met de spreekwoordelijke griffel en leisteen. Het is een goede manier om Git in de bedrijfsomgeving binnen te smokkelen en je mede-ontwikkelaars te helpen efficiënter te worden terwijl jij lobbiet om de infrastructuur dusdanig te veranderen dat Git volledig gesupport kan worden. De Subversion brug is het uitwisselings-medicijn naar de DCVS wereld.
+Een van de beste features van Git is een bidirectionele brug naar Subversion genaamd `git svn`. Deze tool staat je toe om Git als een volwaardige client van een Subversion server te gebruiken, zodat je alle lokale eigenschappen van Git kunt gebruiken en daarna naar een Subversion server kunt pushen alsof je Subversion lokaal gebruikt. Dit houdt in dat je lokaal kunt branchen en mergen, het staging gebied gebruiken, kunt rebasen en cherry-picken enzovoorts, terwijl je medewerkers verder werken met de spreekwoordelijke griffel en leisteen. Het is een goede manier om Git in de bedrijfsomgeving binnen te smokkelen en je mede-ontwikkelaars te helpen efficiënter te worden terwijl jij lobbiet om de infrastructuur dusdanig te veranderen dat Git volledig gesupport kan worden. De Subversion brug is het uitwisselings-medicijn naar de DCVS wereld.
 
 ### git svn ###
 
@@ -123,7 +123,7 @@ Nu zou je een geldig Git repository moeten hebben, waar de branches en tags in g
 	  tags/release-2.0.2rc1
 	  trunk
 
-Het is belangrijk om op te merken dat dit tool je remote references een andere namespace heeft toebedeeld. Als je normaal een Git repository cloned, krijg je alle branches op die remote server lokaal beschikbaar in de vorm van `origin/[branch]` - waarbij in de namespace de naam van de remote wordt gebruikt. Echter, `git svn` gaat er vanuit dat je niet meerdere remotes hebt en bewaart alle referentie naar punten op de remote server zonder gebruik te maken van namespaces. Je kunt het Git plumbing commando `show-ref` gebruiken om al je volledige referentie namen te zien:
+Het is belangrijk om op te merken dat deze tool je remote references een andere namespace heeft toebedeeld. Als je normaal een Git repository cloned, krijg je alle branches op die remote server lokaal beschikbaar in de vorm van `origin/[branch]` - waarbij in de namespace de naam van de remote wordt gebruikt. Echter, `git svn` gaat er vanuit dat je niet meerdere remotes hebt en bewaart alle referentie naar punten op de remote server zonder gebruik te maken van namespaces. Je kunt het Git plumbing commando `show-ref` gebruiken om al je volledige referentie namen te zien:
 
 	$ git show-ref
 	1cbd4904d9982f386d87f88fce1c24ad7c0f0471 refs/heads/master
@@ -238,7 +238,7 @@ Regelmatig `git svn rebase` uitvoeren zorgt er voor dat je code altijd up to dat
 
 ### Git branch problemen ###
 
-Als je gewend geraakt bent aan een Git workflow, zal je waarschijnlijk topic branches gaan maken, er werk op doen en ze dan terug mergen. Als je naar een Subversion server pusht via git svn, zou je kunnen overwegen je werk iedere keer op een enkele branch rebasen in plaats van de branches samen te mergen. De reden om rebasen te prefereren is dat Subversion een lineaire geschiedenis heeft, en niet met merges omgaat op de manier zoals Git dat doet, dus git svn volgt alleen de eerste ouder op het moment dat de snapshots naar Subversion commits omgezet worden.
+Als je gewend geraakt bent aan een Git workflow, zal je waarschijnlijk topic branches gaan maken, er werk op doen en ze dan terug mergen. Als je naar een Subversion server pusht via `git svn`, zou je kunnen overwegen je werk iedere keer op een enkele branch rebasen in plaats van de branches samen te mergen. De reden om rebasen te prefereren is dat Subversion een lineaire geschiedenis heeft, en niet met merges omgaat op de manier zoals Git dat doet, dus `git svn` volgt alleen de eerste ouder op het moment dat de snapshots naar Subversion commits omgezet worden.
 
 Stel dat je geschiedenis er zoals volgt uitziet: je hebt een `experiment` branch gemaakt, twee commits gedaan en ze dan terug in `master` gemerged. Als je dan `dcommit` zie je output zoals dit:
 
@@ -267,7 +267,7 @@ Als iemand anders dat werk cloned, is alles wat ze zien de merge commit met al h
 
 ### Subversion branchen ###
 
-Branchen in Subversion is niet hetzelfde als branchen in Git; het is waarschijnlijk het beste om het zoveel mogelijk te vermijden. Maar, je kunt Subversion branches maken en daarnaar committen met git svn.
+Branchen in Subversion is niet hetzelfde als branchen in Git; het is waarschijnlijk het beste om het zoveel mogelijk te vermijden. Maar, je kunt Subversion branches maken en daarnaar committen met `git svn`.
 
 #### Een nieuwe SVN branch maken ####
 
@@ -458,7 +458,7 @@ Het volgende systeem waar je naar gaat kijken om vanuit te importeren is Perforc
 	$ git clone git://git.kernel.org/pub/scm/git/git.git
 	$ cd git/contrib/fast-import
 
-In deze `fast-import` directory, zou je een uitvoerbaar Python script genaamd `git-p4` moeten vinden. Je moet Python en het `p4` tool geïnstalleerd hebben op je machine om deze import te laten werken. Als voorbeeld ga je het Jam project van de Perforce Public Depot importeren. Om je client in te stellen, moet je de P4PORT omgevingsvariabele laten wijzen naar het Perforce depot:
+In deze `fast-import` directory, zou je een uitvoerbaar Python script genaamd `git-p4` moeten vinden. Je moet Python en de `p4` tool geïnstalleerd hebben op je machine om deze import te laten werken. Als voorbeeld ga je het Jam project van de Perforce Public Depot importeren. Om je client in te stellen, moet je de P4PORT omgevingsvariabele laten wijzen naar het Perforce depot:
 
 	$ export P4PORT=public.perforce.com:1666
 
@@ -535,7 +535,7 @@ Voor een korte demonstratie ga je een eenvoudige importeerder schrijven. Stel da
 
 Om naar een Git directory te importeren, moet je nalezen hoe Git zijn data opslaat. Je kunt je misschien herinneren dat Git eigenlijk een gelinkte lijst is met commit objecten die naar een snapshot van de inhoud wijzen. Het enige dat je hoeft te doen, is `fast-import` vertellen wat de inhoud snapshots zijn, welke commit data er naar wijst en de volgorde waarin ze moeten staan. Je strategie zal bestaan uit het doorlopen van de snapshots en commits te creëren met de inhoud van iedere directory, waarbij je iedere commit terug linkt met de vorige.
 
-Zoals je dat ook gedaan hebt in de "Een Voorbeeld van Git-Afgedwongen Beleid" paragraaf van Hoofdstuk 7 gaan we dit in Ruby schrijven, omdat ik daar over normaalgesproken mee werk en het relatief eenvoudig is te lezen. Je kunt dit voorbeeld vrij eenvoudig schrijven in hetgeen waar je bekend mee bent, het hoeft alleen de juiste informatie naar stdout te schrijven. En dat betekent dat als je op Windows werkt je erg voorzichtig moet zijn om geen carriage returns te introduceren aan het einde van je regels. Want git fast-import is erg kieskeurig wat dat betreft: hij wil slechts line feeds (LF) hebben en niet de cariage return line feeds (CRLF) die Windows gebruikt.
+Zoals je dat ook gedaan hebt in de "Een Voorbeeld van Git-Afgedwongen Beleid" paragraaf van Hoofdstuk 7 gaan we dit in Ruby schrijven, omdat ik daar over normaalgesproken mee werk en het relatief eenvoudig is te lezen. Je kunt dit voorbeeld vrij eenvoudig schrijven in hetgeen waar je bekend mee bent, het hoeft alleen de juiste informatie naar stdout te schrijven. En dat betekent dat als je op Windows werkt je erg voorzichtig moet zijn om geen carriage returns te introduceren aan het einde van je regels. Want `git fast-import` is erg kieskeurig wat dat betreft: hij wil slechts line feeds (LF) hebben en niet de carriage return line feeds (CRLF) die Windows gebruikt.
 
 Om te beginnen ga je naar de doeldirectory en identificeert iedere subdirectory, waarvan elk een snapshot is dat je als commit wil importeren. Dan ga je in iedere subdirectory en print de noodzakelijke commando's om ze te exporteren. Je basis hoofdlus ziet er zo uit:
 
@@ -637,7 +637,7 @@ Het laatste wat je moet doen is het huidige kenmerk teruggeven, zodat het meegeg
 
 	return mark
 
-LET OP: Als je op Windows werkt moet je er zeker van zijn dat je nog één extra stap toevoegt. Zoals eerder gemeld is, gebruikt Windows CRLF als new line karakters, terwijl git fast-import alleen LF verwacht. Om dit probleem te omzeilen en git fast-import blij te maken, moet je ruby vertellen om LF in plaats van CRLF te gebruiken:
+LET OP: Als je op Windows werkt moet je er zeker van zijn dat je nog één extra stap toevoegt. Zoals eerder gemeld is, gebruikt Windows CRLF als new line karakters, terwijl git fast-import alleen LF verwacht. Om dit probleem te omzeilen en `git fast-import` blij te maken, moet je ruby vertellen om LF in plaats van CRLF te gebruiken:
 
 	$stdout.binmode
 
@@ -718,7 +718,7 @@ Hier heb je 't, een mooie, schone Git repository. Het is belangrijk om te op te 
 	$ ls
 	file.rb  lib
 
-Je kunt nog veel meer doen met het `fast-import` tool: verschillende bestandsmodi verwerken, binaire gegevens, meerdere branches en mergen, tags, voortgangsindicatoren, enzovoorts. Een aantal voorbeelden voor complexe scenario's zijn voorhanden in de `contrib/fast-import` directory van de Git broncode, een van de betere is het `git-p4` script dat ik zojuist behandeld heb.
+Je kunt nog veel meer doen met de `fast-import` tool: verschillende bestandsmodi verwerken, binaire gegevens, meerdere branches en mergen, tags, voortgangsindicatoren, enzovoorts. Een aantal voorbeelden voor complexe scenario's zijn voorhanden in de `contrib/fast-import` directory van de Git broncode, een van de betere is het `git-p4` script dat ik zojuist behandeld heb.
 
 ## Samenvatting ##
 

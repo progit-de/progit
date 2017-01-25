@@ -33,7 +33,7 @@ vertaling moeten proberen te maken.
 
 Veel succes en plezier bij het vertalen...
 -->
-<!-- SHA-1 of last checked en-version: fbf24105 -->
+<!-- SHA-1 of last checked en-version: 4cefec -->
 # Het binnenwerk van Git #
 
 Je zult misschien naar dit hoofdstuk gesprongen zijn vanuit een voorafgaand hoofdstuk, of je zult hier gekomen zijn nadat je de rest van het boek gelezen hebt; hoe dan ook, hier is waar het binnenwerk en implementatie van Git behandeld gaat worden. Ik heb gemerkt dat het leren van deze informatie van fundamenteel belang is om te begrijpen hoe bruikbaar en krachtig Git is, maar anderen hebben daar tegenin gebracht dat het erg verwarrend en onnodig complex kan zijn voor beginners. Daarom heb ik de behandeling hiervan het laatste hoofdstuk gemaakt in het boek, zodat je kunt besluiten om het het vroeg of later in je leerproces kunt lezen. Ik laat het aan jou over om dat te beslissen.
@@ -63,7 +63,7 @@ Als je `git init` uitvoert in een nieuwe of bestaande directory, zal Git de dire
 	objects/
 	refs/
 
-Je zou hier een paar andere bestanden kunnen zien, maar dit is een verse `git init` repository - dit is wat je standaard ziet. De `branches` directory wordt niet gebruikt door nieuwere Git versies, en het `description` bestand wordt alleen gebruikt door het programma GitWeb, dus je hoeft je daar geen zorgen over te maken. Het bestand `config` bevat je project-specifieke configuratieopties, en de `info` directory bevat een bestand met bestandsnaampatronen die je niet wilt volgen, maar die je niet wilt opnemen in een .gitignore bestand. De directory `hooks` bevat scripts die aan bepaalde acties zijn “gehaakt” aan client- en serverkant, deze zijn in detail behandeld in Hoofdstuk 7.
+Je zou hier een paar andere bestanden kunnen zien, maar dit is een verse `git init` repository - dit is wat je standaard ziet. De `branches` directory wordt niet gebruikt door nieuwere Git versies, en het `description` bestand wordt alleen gebruikt door het programma GitWeb, dus je hoeft je daar geen zorgen over te maken. Het bestand `config` bevat je project-specifieke configuratieopties, en de `info` directory bevat een bestand met bestandsnaampatronen die je niet wilt volgen, maar die je niet wilt opnemen in een `.gitignore` bestand. De directory `hooks` bevat scripts die aan bepaalde acties zijn “gehaakt” aan client- en serverkant, deze zijn in detail behandeld in Hoofdstuk 7.
 
 Dit laat vier belangrijke vermeldingen over: de bestanden `HEAD` en `index`, en de directories `objects` en `refs`. Dit zijn de kernbestanddelen van Git. De directory `objects` bevat alle inhoud van je databank, de directory `refs` bevat verwijzingen naar commitobjecten (branches) in die databank, het bestand `HEAD` wijst naar de branch die je op dit moment uitgecheckt hebt, en het bestand `index` is waar Git de informatie van je staging area (wachtrij) opslaat. We gaan nu gedetaileerd naar elk van deze onderdelen kijken om te laten zien hoe Git werkt.
 
@@ -896,7 +896,7 @@ Vervolgens, stel dat je verloren commit om een of andere reden niet in de reflog
 	$ git branch –D recover-branch
 	$ rm -Rf .git/logs/
 
-Omdat de reflog gegevens bewaard worden in de `.git/logs/` directory, heb je nu effectief geen reflog meer. Hoe kun je die commit nu herstellen? Één manier is om gebruik te maken van het `git fsck` tool, wat de integriteit van je gegevensbank controleert. Als je het met de `--full` optie uitvoert, dan toont het je alle objecten waarnaar niet gewezen wordt door een ander object:
+Omdat de reflog gegevens bewaard worden in de `.git/logs/` directory, heb je nu effectief geen reflog meer. Hoe kun je die commit nu herstellen? Één manier is om gebruik te maken van de `git fsck` tool, wat de integriteit van je gegevensbank controleert. Als je het met de `--full` optie uitvoert, dan toont het je alle objecten waarnaar niet gewezen wordt door een ander object:
 
 	$ git fsck --full
 	dangling blob d670460b4b4aece5915caf5c68d12f560a9fe3e4
@@ -1010,4 +1010,4 @@ De grootte van je ingepakte repository is omlaag gegaan naar 7 K, wat veel beter
 
 Je moet een redelijk goed begrip hebben van wat Git op de achtergrond doet en, tot een bepaalde hoogte, hoe het geimplementeerd is. Dit hoofdstuk heeft een aantal plumbing commando's besproken – commando's die op een lager niveau zitten en eenvoudige zijn dan de porcelain commando's waarover je in de rest van het boek gelezen hebt. Begrijpen hoe Git op een lager niveau werkt zou het makkelijker moeten maken om te begrijpen waarom het doet wat het doet en ook om je eigen applicaties te schrijven en hulp scripts om jouw specifieke workflow voor je te laten werken.
 
-Git is als een inhouds-toegankelijk bestandssysteem een zeer krachtig tool dat je eenvoudig als meer dan alleen een VCS kunt gebruiken. Ik hoop dat je deze nieuwe kennis van de werking van Git kunt gebruiken om je eigen coole applicatie te bouwen met deze technologie en dat je je prettig voelt bij het gebruik van Git op meer geavanceerde manieren.
+Git is als een inhouds-toegankelijk bestandssysteem een zeer krachtige tool dat je eenvoudig als meer dan alleen een VCS kunt gebruiken. Ik hoop dat je deze nieuwe kennis van de werking van Git kunt gebruiken om je eigen coole applicatie te bouwen met deze technologie en dat je je prettig voelt bij het gebruik van Git op meer geavanceerde manieren.

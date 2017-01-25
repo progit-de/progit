@@ -173,7 +173,7 @@ W ogólnym zarysie, dane które Git przechowuje wyglądają podobnie do tych pok
 <!-- Conceptually, the data that Git is storing is something like Figure 9-1. -->
 
 Insert 18333fig0901.png
-Figure 9-1. Prosty przykład modelu danych w Git.
+Rysunek 9-1. Prosty przykład modelu danych w Git.
 
 <!-- Figure 9-1. Simple version of the Git data model. -->
 
@@ -240,7 +240,7 @@ Jeżeli odtworzyłeś katalog roboczy z drzewa które właśnie zapisałeś, otr
 <!-- If you created a working directory from the new tree you just wrote, you would get the two files in the top level of the working directory and a subdirectory named `bak` that contained the first version of the test.txt file. You can think of the data that Git contains for these structures as being like Figure 9-2. -->
 
 Insert 18333fig0902.png
-Figure 9-2. Zawartość struktury obecnych danych Git.
+Rysunek 9-2. Zawartość struktury obecnych danych Git.
 
 <!-- Figure 9-2. The content structure of your current Git data. -->
 
@@ -337,7 +337,7 @@ Jeżeli prześledzisz wszystkie wskaźniki, dostaniesz widok obiektów podobny d
 <!-- If you follow all the internal pointers, you get an object graph something like Figure 9-3. -->
 
 Insert 18333fig0903.png
-Figure 9-3. Wszystkie obiekty w Twoim repozytorium Gita.
+Rysunek 9-3. Wszystkie obiekty w Twoim repozytorium Gita.
 
 <!-- Figure 9-3. All the objects in your Git directory. -->
 
@@ -456,7 +456,7 @@ W tej chwili, Twoja baza w Git wygląda podobnie do tej z rysunka 9-4.
 <!-- Now, your Git database conceptually looks something like Figure 9-4. -->
 
 Insert 18333fig0904.png
-Figure 9-4. Obiekty w katalogach Git z uwzględnieniem referencji do gałęzi.
+Rysunek 9-4. Obiekty w katalogach Git z uwzględnieniem referencji do gałęzi.
 
 <!-- Figure 9-4. Git directory objects with branch head references included. -->
 
@@ -612,7 +612,7 @@ Git kompresuje zawartość tych plików za pomocą biblioteki zlib, a Ty nie mas
 
 <!-- Git compresses the contents of these files with zlib, and you’re not storing much, so all these files collectively take up only 925 bytes. You’ll add some larger content to the repository to demonstrate an interesting feature of Git. Add the repo.rb file from the Grit library you worked with earlier — this is about a 12K source code file: -->
 
-    $ curl https://raw.github.com/mojombo/grit/master/lib/grit/repo.rb > repo.rb
+    $ curl -L https://raw.github.com/mojombo/grit/master/lib/grit/repo.rb > repo.rb
     $ git add repo.rb
     $ git commit -m 'added repo.rb'
     [master 484a592] added repo.rb

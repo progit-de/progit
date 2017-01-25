@@ -142,7 +142,7 @@ P4Merge はすべての主要プラットフォーム上で動作するので、
 
 まず、P4Merge をここからダウンロードします。
 
-	http://www.perforce.com/perforce/downloads/component.html
+	http://www.perforce.com/product/components/perforce-visual-merge-and-diff-tools
 
 最初に、コマンドを実行するための外部ラッパースクリプトを用意します。この例では、Mac 用の実行パスを使います。他のシステムで使う場合は、`p4merge` のバイナリがインストールされた場所に置き換えてください。次のようなマージ用ラッパースクリプト `extMerge` を用意しました。これは、すべての引数を受け取ってバイナリをコールします。
 
@@ -511,7 +511,7 @@ RCSスタイルの`$Date$`キーワード展開もまた別の興味深い例で
 
 	test/ export-ignore
 
-これで、プロジェクトのtarballを作成するためにgitを実行した時、アーカイブには`test/`ディレクトリが含まれないようになります。
+これで、プロジェクトのtarballを作成するために`git archive`を実行した時、アーカイブには`test/`ディレクトリが含まれないようになります。
 
 #### export-subst ####
 
@@ -613,14 +613,12 @@ update スクリプトは `pre-receive` スクリプトと似ていますが、�
 
 	#!/usr/bin/env ruby
 
-	$refname = ARGV[0]
-	$oldrev  = ARGV[1]
-	$newrev  = ARGV[2]
-	$user    = ENV['USER']
+	refname = ARGV[0]
+	oldrev  = ARGV[1]
+	newrev  = ARGV[2]
+	user    = ENV['USER']
 
-	puts "Enforcing Policies... \n(#{$refname}) (#{$oldrev[0,6]}) (#{$newrev[0,6]})"
-
-ああ、グローバル変数を使ってるとかいうツッコミは勘弁してください。このほうが説明が楽なので。
+	puts "Enforcing Policies... \n(#{refname}) (#{oldrev[0,6]}) (#{newrev[0,6]})"
 
 #### 特定のコミットメッセージ書式の強制 ####
 
